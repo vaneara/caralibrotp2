@@ -1,0 +1,328 @@
+/* 
+   Caralibro - TP1 Frontend
+   Estética retro inspired by Facebook 2010
+*/
+
+:root {
+    --fb-blue: #3b5998;
+    --fb-header-blue: #4267b2;
+    --fb-bg-gray: #e9ebee;
+    --fb-border: #dddfe2;
+    --fb-text-black: #1c1e21;
+    --fb-text-gray: #606770;
+    --fb-link-blue: #385898;
+    --white: #ffffff;
+
+    --header-height: 42px;
+    --max-width: 980px;
+
+    /* Copiar esto para customizar el perfil de cada uno */
+    --profile-bg: var(--fb-bg-gray);
+    --profile-accent: var(--fb-blue);
+    --profile-accent-hover: #29487d;
+    --profile-card-bg: var(--white);
+    --profile-text: var(--fb-text-black);
+    --profile-link: var(--fb-link-blue);
+
+    /* Layout Variables */
+    --app-grid-columns: 180px 1fr 280px;
+    --card-padding: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--profile-bg);
+    background-image: var(--profile-bg-img, none);
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--profile-text);
+    font-size: 12px;
+    line-height: 1.34;
+}
+
+a {
+    color: var(--profile-link);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--fb-blue);
+    height: var(--header-height);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #29487d;
+}
+
+.header-container {
+    width: 100%;
+    max-width: var(--max-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.logo-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 2px;
+    font-size: 11px;
+}
+
+nav ul {
+    gap: 15px;
+    display: flex;
+}
+
+.left-sidebar ul {
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left-sidebar ul li a {
+    color: var(--fb-blue);
+}
+
+nav ul li a {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+nav ul li.active a {
+    background-color: #29487d;
+    color: var(--white);
+}
+
+/* --- Layout --- */
+.app-container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: calc(var(--header-height) + 20px) auto 40px;
+    display: grid;
+    grid-template-columns: var(--app-grid-columns);
+    gap: 20px;
+    padding: 0 10px;
+}
+
+/* --- Left Sidebar --- */
+.left-sidebar nav ul li {
+    padding: 4px 8px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.left-sidebar nav ul li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.left-sidebar nav ul li.active {
+    background-color: #d8dfea;
+    font-weight: bold;
+}
+
+.sidebar-title {
+    color: var(--fb-text-gray);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin: 15px 8px 5px;
+}
+
+/* --- Main Content --- */
+main {
+    min-height: 80vh;
+}
+
+.card {
+    background-color: var(--profile-card-bg);
+    border: 1px solid var(--fb-border);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: var(--card-padding);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--fb-border);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4b4f56;
+}
+
+.status-input textarea {
+    width: 100%;
+    resize: vertical;
+    border: 1px solid var(--fb-border);
+    padding: 10px;
+    border-radius: 2px;
+    min-height: 60px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+}
+
+.status-input textarea:focus {
+    border-color: var(--fb-blue);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top: 1px solid var(--fb-border);
+    margin-top: 10px;
+}
+
+.post-actions {
+    margin-top: 10px;
+    border-top: 1px solid #ebedf0;
+    padding-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.post-actions a {
+    font-weight: bold;
+    color: var(--fb-text-gray);
+    font-size: 12px;
+}
+
+.post-actions a:hover {
+    text-decoration: underline;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h1 {
+    font-size: 20px;
+    color: var(--fb-text-black);
+}
+
+/* --- Right Sidebar --- */
+.right-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.widget {
+    background-color: var(--white);
+    border: 1px solid var(--fb-border);
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.widget-title {
+    color: var(--fb-text-gray);
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Buttons --- */
+.fb-button {
+    background-color: #f5f6f7;
+    border: 1px solid var(--fb-border);
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-weight: bold;
+    color: #4b4f56;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.fb-button:hover {
+    background-color: #ebedf0;
+}
+
+.fb-button-primary {
+    background-color: var(--profile-accent);
+    border-color: var(--profile-accent-hover);
+    color: var(--white);
+}
+
+.fb-button-primary:hover {
+    background-color: var(--profile-accent-hover);
+}
+
+/* --- Footer --- */
+footer {
+    max-width: var(--max-width);
+    margin: 40px auto;
+    padding: 20px 10px;
+    border-top: 1px solid var(--fb-border);
+    color: var(--fb-text-gray);
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
