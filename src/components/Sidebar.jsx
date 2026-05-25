@@ -44,7 +44,7 @@ function Sidebar() {
             </li>
             <li>
               <span className="icon">💬</span>
-              <a href="#">Mensajes</a>
+              <NavLink to="/mensajes">Mensajes</NavLink>
             </li>
             <li>
               <span className="icon">📅</span>

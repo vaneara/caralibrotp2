@@ -115,15 +115,6 @@ nav ul {
     display: flex;
 }
 
-.left-sidebar ul {
-    flex-direction: column;
-    gap: 20px;
-}
-
-.left-sidebar ul li a {
-    color: var(--fb-blue);
-}
-
 nav ul li a {
     color: var(--white);
     font-weight: bold;
@@ -171,7 +162,7 @@ nav ul li a.active {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.right-sidebar .widget nav ul li.active {
+.right-sidebar .widget nav ul li a.active {
     background-color: #d8dfea;
     font-weight: bold;
 }

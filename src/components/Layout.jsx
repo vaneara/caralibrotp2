@@ -1,6 +1,7 @@
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Footer from './Footer'
+import FloatingChat from './FloatingChat'
 
 function Layout({ children, rightSidebarTop }) {
   return (
@@ -18,6 +19,8 @@ function Layout({ children, rightSidebarTop }) {
       </div>
 
       <Footer />
+
+      <FloatingChat />
     </>
   )
 }

@@ -4,10 +4,12 @@ import MemberList from '../components/MemberList'
 function Perfiles() {
   return (
     <Layout>
-      <h1>Perfiles</h1>
+      <div style={{ backgroundColor: "white", padding: "20px" }}>
+        <h1 style={{ color: "var(--text)" }}>Perfiles</h1>
 
-      <MemberList />
-    </Layout>
+        <MemberList />
+      </div>
+    </Layout >
   )
 }
 
