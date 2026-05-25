@@ -1,60 +1,26 @@
 function MemberCard({ nombre, rol, imagen }) {
 
   return (
-    <div
-      className="member-item"
-      style={{
-        display: 'flex',
-        gap: '10px',
-        marginBottom: '15px'
-      }}
-    >
+    <div className="member-item">
 
-      <div
-        style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: '#ccc',
-          borderRadius: '2px'
-        }}
-      >
-        <img
-          src={imagen}
-          alt={nombre}
-          style={{
-            width: '100%',
-            borderRadius: '2px'
-          }}
-        />
+      <div className="member-avatar">
+        <img src={imagen} alt={nombre} />
       </div>
 
       <div>
-        <a
-          href="#"
-          style={{
-            fontWeight: 'bold',
-            fontSize: '12px',
-            display: 'block'
-          }}
-        >
+
+        <a href="#" className="member-name">
           {nombre}
         </a>
 
-        <div
-          style={{
-            color: '#606770',
-            fontSize: '11px'
-          }}
-        >
+        <div className="member-role">
           {rol}
         </div>
 
-        <button
-          className="fb-button"
-          style={{ marginTop: '5px' }}
-        >
+        <button className="fb-button">
           Añadir
         </button>
+
       </div>
 
     </div>

@@ -1,5 +1,7 @@
-import '../assets/css/main.css'
-import '../assets/css/responsive.css'
+import "../styles/main.css"
+import "../styles/responsive.css"
+
+import defaultImg from "../assets/img/default.png"
 
 function Bitacora() {
   return (
@@ -57,7 +59,7 @@ function Bitacora() {
               }}
             >
               <img
-                src="img/default.png"
+                src={defaultImg}
                 alt="User"
                 style={{ width: '100%' }}
               />

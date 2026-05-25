@@ -1,5 +1,9 @@
-import '../assets/css/main.css'
-import '../assets/css/responsive.css'
+import "../styles/main.css"
+import "../styles/responsive.css"
+
+import tomi from "../assets/img/tomi.png"
+import avatarvane from "../assets/img/avatarvane.jpg"
+import defaultImg from "../assets/img/default.png"
 
 function Home() {
   return (
@@ -58,7 +62,7 @@ function Home() {
               }}
             >
               <img
-                src="img/default.png"
+                src={defaultImg}
                 alt="User"
                 style={{ width: '100%' }}
               />
@@ -231,7 +235,7 @@ function Home() {
                 }}
               >
                 <img
-                  src="img/avatarvane.jpg"
+                  src={avatarvane}
                   alt="avatar"
                   style={{
                     width: '32px',
@@ -327,7 +331,7 @@ function Home() {
                   }}
                 >
                   <img
-                    src="img/tomi.png"
+                    src={tomi}
                     alt="Tomi"
                     style={{
                       width: '100%',
