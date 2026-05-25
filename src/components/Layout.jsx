@@ -1,0 +1,25 @@
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Footer from './Footer'
+
+function Layout({ children, rightSidebarTop }) {
+  return (
+    <>
+      <Header />
+
+      <div className="app-container">
+        <main>{children}</main>
+
+        <aside className="right-sidebar">
+          {rightSidebarTop}
+
+          <Sidebar />
+        </aside>
+      </div>
+
+      <Footer />
+    </>
+  )
+}
+
+export default Layout

@@ -25,7 +25,7 @@
     --profile-link: var(--fb-link-blue);
 
     /* Layout Variables */
-    --app-grid-columns: 180px 1fr 280px;
+    --app-grid-columns: 1fr 280px;
     --card-padding: 12px;
 }
 
@@ -137,7 +137,7 @@ nav ul li a:hover {
     text-decoration: none;
 }
 
-nav ul li.active a {
+nav ul li a.active {
     background-color: #29487d;
     color: var(--white);
 }
@@ -153,8 +153,13 @@ nav ul li.active a {
     padding: 0 10px;
 }
 
-/* --- Left Sidebar --- */
-.left-sidebar nav ul li {
+/* --- Sidebar (inside right sidebar widget) --- */
+.right-sidebar .widget nav ul {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.right-sidebar .widget nav ul li {
     padding: 4px 8px;
     border-radius: 2px;
     display: flex;
@@ -162,13 +167,17 @@ nav ul li.active a {
     gap: 8px;
 }
 
-.left-sidebar nav ul li:hover {
+.right-sidebar .widget nav ul li:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.left-sidebar nav ul li.active {
+.right-sidebar .widget nav ul li.active {
     background-color: #d8dfea;
     font-weight: bold;
+}
+
+.right-sidebar .widget nav ul li a {
+    color: var(--fb-blue);
 }
 
 .sidebar-title {
