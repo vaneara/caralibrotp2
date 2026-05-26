@@ -13,16 +13,9 @@
 /* Tablets / Small Desktops (< 900px) */
 @media (max-width: 900px) {
     :root {
-        --app-grid-columns: 180px 1fr;
+        --app-grid-columns: 1fr 280px;
     }
-    
-    .right-sidebar {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-    
+
     .search-container {
         max-width: 180px;
     }
@@ -47,18 +40,13 @@
         margin-top: calc(var(--header-height) + 10px);
     }
 
-    .left-sidebar {
-        order: 1;
-    }
-
     main {
-        order: 2;
+        order: 1;
     }
 
     .right-sidebar {
         grid-column: span 1;
-        grid-template-columns: 1fr;
-        order: 3;
+        order: 2;
     }
 
     /* Profile Specific */

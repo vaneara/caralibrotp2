@@ -1,31 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Home from "./pages/Home";
-import Bitacora from "./pages/Bitacora";
-import Perfiles from "./pages/Perfiles";
-import PerfilVane from "./pages/PerfilVane";
-import Perfiltomi from "./pages/Perfiltomi";
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Bitacora from './pages/Bitacora'
+import Perfiles from './pages/Perfiles'
+import Mensajes from './pages/Mensajes'
 
 function App() {
   return (
-    <BrowserRouter>
+    <Routes>
 
-      <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/bitacora" element={<Bitacora />} />
+      
+      <Route path="/perfiles" element={<Perfiles />} />
 
-        <Route path="/" element={<Home />} />
+      <Route path="/perfiles/:slug" element={<Perfiles />} />
 
-        <Route path="/bitacora" element={<Bitacora />} />
+      
+      <Route path="/mensajes" element={<Mensajes />} />
 
-        <Route path="/perfiles" element={<Perfiles />} />
-
-        <Route path="/perfil-vane" element={<PerfilVane />} />
-
-        <Route path="/perfil-tomi" element={<Perfiltomi />} />
-
-      </Routes>
-
-    </BrowserRouter>
-  );
+    </Routes>
+  )
 }
 
-export default App;
+export default App

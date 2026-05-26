@@ -1,68 +1,117 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import MemberCard from "../components/MemberCard";
+import { useParams } from "react-router-dom";
+import Layout from "../components/Layout";
+import MemberList from "../components/MemberList";
+import { miembros } from "../data/miembros";
 
-import ferAvatar from "../assets/img/fer_avatar.jpg"
-import avatarvane from "../assets/img/avatarvane.jpg"
-import tomi from "../assets/img/tomi.png"
+function Perfiles() {
+  const { slug } = useParams();
+  const user = miembros.find((m) => m.slug === slug);
 
-import "../styles/main.css"
-import "../styles/responsive.css"
-
-function Profiles() {
   return (
-    <>
-      <Header />
+    <Layout>
+      <main className="profile-wrapper">
 
-      <div className="app-container profile-container">
-
-        <aside className="left-sidebar"></aside>
-
-        <main>
-
-          <div className="widget">
-
-            <div className="widget-title">
-              <span>PERSONAS QUE QUIZÁ CONOZCAS</span>
-
-              <a href="#">Ver todo</a>
+        {/* LISTA DE PERSONAS */}
+        {!slug && (
+          <div className="profile-card">
+            <div className="profile-title">
+              Personas que quizá conozcas
             </div>
 
-            <div className="member-list">
-
-              <MemberCard
-                image={tomi}
-                name="Tomi M."
-                role="Frontend Dev"
-                link="/perfil-tomi"
-              />
-
-              <MemberCard
-                image={avatarvane}
-                name="Vane Ara"
-                role="Developer"
-                link="/perfil-vane"
-              />
-
-              <MemberCard
-                image={ferAvatar}
-                name="Fernando Rodriguez"
-                role="Backend Developer"
-                link="/perfil-fer"
-              />
-
-            </div>
-
+            <MemberList />
           </div>
+        )}
 
-        </main>
+        {/* PERFIL NO ENCONTRADO */}
+        {slug && !user && (
+          <div className="profile-card">
+            <h3>Usuario no encontrado</h3>
+          </div>
+        )}
 
-      </div>
+        {/* PERFIL COMPLETO */}
+        {slug && user && (
+          <div className="profile-card">
 
-      <Footer />
+            {/* HEADER */}
+            <div className="profile-header">
+              <img
+              src={user.imagen}
+              alt={user.nombre}
+              className="profile-photo"
+              />
 
-    </>
+              <div>
+                <h2>{user.nombre}</h2>
+                <p>{user.rol}</p>
+                <small>{user.perfilCompleto?.bio}</small>
+              </div>
+            </div>
+
+            {/* MENU */}
+            <div className="profile-menu">
+              <span className="active">Muro</span>
+              <span>Información</span>
+              <span>Fotos</span>
+              <span>Más</span>
+            </div>
+
+            {/* CONTENIDO */}
+            <div className="profile-body">
+
+              {/* INFO */}
+              <div className="info-box">
+                <b>Información</b>
+                <p>Relación: {user.perfilCompleto?.info?.relacion}</p>
+                <p>Cumpleaños: {user.perfilCompleto?.info?.cumpleaños}</p>
+                <p>Ciudad: {user.perfilCompleto?.info?.ciudad}</p>
+                <p>Edad: {user.perfilCompleto?.info?.edad}</p>
+              </div>
+
+              {/* HABILIDADES */}
+              <div className="info-box">
+                <b>Habilidades</b>
+                {user.perfilCompleto?.habilidades?.map((h, i) => (
+                  <div key={i}>• {h}</div>
+                ))}
+              </div>
+
+              {/* PELICULAS */}
+              <div className="info-box">
+                <b>Películas favoritas</b>
+
+                {user.perfilCompleto?.peliculas?.map((p, i) => (
+                  <div key={i} className="movie-item">
+                    <img src={p.img} alt={p.titulo} width={40} />
+                    <div>
+                      <div><b>{p.titulo}</b></div>
+                      <small>{p.genero}</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* MUSICA */}
+              <div className="info-box">
+                <b>Música</b>
+                {user.perfilCompleto?.musica?.map((m, i) => (
+                  <div key={i}>🎧 {m}</div>
+                ))}
+              </div>
+
+              {/* AMIGOS */}
+              <div className="info-box">
+                <b>Amigos</b>
+                <p>{user.perfilCompleto?.amigos} amigos</p>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+      </main>
+    </Layout>
   );
 }
 
-export default Profiles;
+export default Perfiles;
