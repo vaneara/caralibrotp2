@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # TP1 Frontend - Caralibro (Archive 2010)
 
 ## Descripción del Proyecto
