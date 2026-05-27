@@ -3,6 +3,8 @@ import Layout from '../components/Layout'
 import ConversationList from '../components/ConversationList'
 import MessageThread from '../components/MessageThread'
 
+const emojis = ['😊', '👍', '🔥', '💪', '😄', '🎉', '👌', '✅', '❤️', '😂', '🤩', '🙌', '✨', '👀']
+
 const conversations = [
   {
     id: 1,
@@ -80,10 +82,17 @@ function Mensajes() {
         <MessageThread
           activeConversation={activeConv}
           onSendMessage={(text) => {
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)]
             setActiveConv(prev => ({
               ...prev,
               messages: [...prev.messages, { from: 'me', text, time: 'Ahora' }],
             }))
+            setTimeout(() => {
+              setActiveConv(prev => ({
+                ...prev,
+                messages: [...prev.messages, { from: 'them', text: emoji, time: 'Ahora' }],
+              }))
+            }, 1000 + Math.random() * 2000)
           }}
         />
       </div>

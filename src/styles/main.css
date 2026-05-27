@@ -291,6 +291,12 @@ main {
     display: flex;
     justify-content: space-between;
 }
+.profile-card .widget-title {
+    font-size: 14px;
+    padding: 12px;
+    margin: 0;
+    border-bottom: 1px solid #dddfe2;
+}
 
 /* --- Buttons --- */
 .fb-button {
@@ -635,6 +641,11 @@ footer {
     margin-bottom: 10px;
 }
 
+/* --- Note Form --- */
+.note-form .card-footer {
+    gap: 8px;
+}
+
 /* --- Member Cards --- */
 
 .member-card {
@@ -840,4 +851,324 @@ footer {
 .info-box small {
     font-size: 12px;
     line-height: 1.4;
+}
+
+/* PHOTOS */
+.profile-photos {
+    padding: 5px 0;
+}
+.profile-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.profile-photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid #dddfe2;
+    padding: 6px;
+    background: #f7f7f7;
+}
+.profile-photo-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+.profile-photo-item span {
+    font-size: 10px;
+    color: #365899;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* NOTICIAS */
+.noticias-header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #dddfe2;
+    margin-bottom: 0;
+}
+.noticias-section {
+    padding: 16px;
+}
+.noticias-section-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4b4f56;
+    margin-bottom: 12px;
+}
+.feriados-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.feriado-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    background: #f7f7f7;
+}
+.feriado-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+    flex-shrink: 0;
+    border: 1px solid #dddfe2;
+    background: white;
+}
+.feriado-day {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1c1e21;
+    line-height: 1.1;
+    padding: 2px 0;
+}
+.feriado-month {
+    font-size: 9px;
+    font-weight: bold;
+    color: white;
+    background: #cc0000;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    padding: 1px 0;
+}
+.feriado-info {
+    flex: 1;
+    min-width: 0;
+}
+.feriado-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1c1e21;
+}
+.feriado-meta {
+    font-size: 11px;
+    color: #606770;
+}
+.feriado-tag {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+.feriado-tag-inamovible {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+.feriado-tag-trasladable {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffe0b2;
+}
+.feriado-tag-puente {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #bbdefb;
+}
+.noticias-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0 0;
+}
+.noticias-page-indicator {
+    font-size: 12px;
+    color: #606770;
+}
+.noticias-error {
+    text-align: center;
+    padding: 30px 16px;
+    color: #c62828;
+    font-size: 13px;
+}
+.noticias-error .btn {
+    margin-top: 10px;
+}
+.noticias-loading {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.noticias-skeleton {
+    background: #e4e6eb;
+    border-radius: 2px;
+    animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+.cotizaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.cotizacion-card {
+    border: 1px solid #dddfe2;
+    background: #f7f7f7;
+    padding: 12px;
+    text-align: center;
+}
+.cotizacion-moneda {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1c1e21;
+    margin-bottom: 8px;
+}
+.cotizacion-valores {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 6px;
+}
+.cotizacion-valor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cotizacion-label {
+    font-size: 10px;
+    color: #606770;
+    text-transform: uppercase;
+}
+.cotizacion-number {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1c1e21;
+}
+.cotizacion-fecha {
+    font-size: 10px;
+    color: #90949c;
+}
+
+/* CLIMA */
+.clima-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.clima-card {
+    border: 1px solid #dddfe2;
+    padding: 14px 10px;
+    text-align: center;
+}
+.clima-ciudad {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4b4f56;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.clima-temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.clima-emoji {
+    font-size: 28px;
+}
+.clima-grados {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1c1e21;
+}
+.clima-desc {
+    font-size: 12px;
+    color: #606770;
+    margin-bottom: 4px;
+}
+.clima-viento {
+    font-size: 11px;
+    color: #90949c;
+}
+
+/* BUSCAR AMIGOS */
+.amigos-search-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid #dddfe2;
+}
+.amigos-search-input {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 12px;
+    border: 1px solid #dddfe2;
+    border-radius: 2px;
+    background: white;
+    color: #1c1e21;
+    font-family: inherit;
+}
+.amigos-search-input:focus {
+    outline: none;
+    border-color: #3b5998;
+}
+.amigos-search-select {
+    padding: 6px 10px;
+    font-size: 12px;
+    border: 1px solid #dddfe2;
+    border-radius: 2px;
+    background: white;
+    color: #1c1e21;
+    font-family: inherit;
+    cursor: pointer;
+}
+.amigos-search-select:focus {
+    outline: none;
+    border-color: #3b5998;
+}
+.amigos-count {
+    font-size: 11px;
+    color: #90949c;
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f2f5;
+}
+.amigos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    padding: 12px;
+}
+.amigo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 8px;
+    border: 1px solid #dddfe2;
+    background: #f7f7f7;
+    text-align: center;
+}
+.amigo-nombre {
+    font-size: 12px;
+    font-weight: bold;
+    color: #365899;
+    line-height: 1.2;
+}
+.amigo-rol {
+    font-size: 10px;
+    color: #606770;
+}
+.amigo-ciudad {
+    font-size: 10px;
+    color: #90949c;
+}
+.amigos-empty {
+    padding: 30px 16px;
+    text-align: center;
+    font-size: 13px;
+    color: #606770;
 }

@@ -5,15 +5,19 @@ import Button from '../components/Button'
 import tomi from '../assets/img/tomi.png'
 import avatarvane from '../assets/img/avatarvane.jpg'
 import avatarfer from '../assets/img/fer_avatar.jpg'
+import defaultImg from '../assets/img/default.png'
 
 function Eventos() {
   const [rsvp, setRsvp] = useState(null)
 
-  const asistentes = [
-    { nombre: 'Tomi M.', avatar: tomi },
-    { nombre: 'Vane Ara', avatar: avatarvane },
-    { nombre: 'Fernando Rodriguez', avatar: avatarfer },
+  var asistentes = [
+    { nombre: 'Tomi M.', avatar: tomi, rsvp: 'asistire' },
+    { nombre: 'Vane Ara', avatar: avatarvane, rsvp: 'asistire' },
+    { nombre: 'Fernando Rodriguez', avatar: avatarfer, rsvp: 'asistire' },
   ]
+  if (rsvp !== null) {
+    asistentes.push({ nombre: 'Visitante', avatar: defaultImg, rsvp: rsvp || 'asistire' })
+  }
 
   return (
     <Layout>
@@ -108,8 +112,14 @@ function Eventos() {
               (estilo 2010) utilizando React + Vite.
             </p>
             <p style={{ fontSize: '12px', color: '#1c1e21', lineHeight: '1.5', marginTop: '8px' }}>
-              Se evaluará: componentización (Atomic Design), uso de estados,
-              responsive design, y fidelidad al diseño retro.
+              El propósito de este trabajo es que, como equipo, desarrollen una página web utilizando React.
+              Este proyecto representa una evolución y continuación del Trabajo Práctico 1 (desarrollado
+              originalmente solo con HTML, CSS y JS), migrando su estructura hacia una arquitectura de
+              componentes. La aplicación debe incluir una portada con la presentación del equipo y un listado
+              de estudiantes, donde cada uno cuente con una página individual gestionada mediante React
+              Router. Se deberán aplicar buenas prácticas de organización, diseño adaptable, gestión de
+              código en GitHub y el despliegue en Vercel. Como evolución final, se deben implementar
+              mejoras de interfaz, búsqueda y componentes interactivos avanzados
             </p>
           </div>
 
@@ -182,7 +192,7 @@ function Eventos() {
                 marginBottom: '10px',
               }}
             >
-              {asistentes.length} asistentes
+              {asistentes.length} invitados
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {asistentes.map((a, i) => (
@@ -190,7 +200,7 @@ function Eventos() {
                   <Avatar src={a.avatar} alt={a.nombre} size="md" />
                   <div>
                     <div style={{ fontWeight: 'bold', fontSize: '12px' }}>{a.nombre}</div>
-                    <div style={{ fontSize: '10px', color: '#606770' }}>Confirmado</div>
+                    <div style={{ fontSize: '10px', color: '#606770' }}>{a.rsvp === 'asistire' ? 'Confirmado' : a.rsvp === 'talvez' ? 'Tal vez' : 'No asistiré'}</div>
                   </div>
                 </div>
               ))}

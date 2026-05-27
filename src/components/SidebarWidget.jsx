@@ -1,10 +1,12 @@
-function SidebarWidget({ title, titleLink, children }) {
+import { NavLink } from 'react-router-dom'
+
+function SidebarWidget({ title, titleLink, slug, children }) {
   return (
     <div className="widget">
       {title && (
         <div className="widget-title">
           <span>{title}</span>
-          {titleLink && <a href="#">{titleLink}</a>}
+          {titleLink && <NavLink to={`/${slug}` || "#"}>{titleLink}</NavLink>}
         </div>
       )}
       {children}

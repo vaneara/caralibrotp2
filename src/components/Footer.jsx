@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        <Button onClick={() => navigate('/')}>Volver al Inicio</Button>
+        <Button onClick={() => navigate('/home')}>Volver al Inicio</Button>
         <Button onClick={() => navigate('/bitacora')}>Ir a Bitácora</Button>
       </div>
 

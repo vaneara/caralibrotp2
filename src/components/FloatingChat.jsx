@@ -3,11 +3,16 @@ import FriendListItem from './FriendListItem'
 import MessageBubble from './MessageBubble'
 import ChatInput from './ChatInput'
 import Avatar from './Avatar'
+import fer_avatar from '../assets/img/fer_avatar.jpg'
+import vane_avatar from '../assets/img/avatarvane.jpg'
+import tomi_avatar from '../assets/img/tomi.png'
+
+const emojis = ['😊', '👍', '🔥', '💪', '😄', '🎉', '👌', '✅', '❤️', '😂', '🤩', '🙌', '✨', '👀']
 
 const friends = [
-  { id: 1, name: 'Vane Ara', avatar: 'img/avatarvane.jpg', online: true },
-  { id: 2, name: 'Tomi M.', avatar: 'img/tomi.png', online: true },
-  { id: 3, name: 'Fernando Rodríguez', avatar: 'img/default.png', online: false },
+  { id: 1, name: 'Vane Ara', avatar: vane_avatar, online: true },
+  { id: 2, name: 'Tomi M.', avatar: tomi_avatar, online: true },
+  { id: 3, name: 'Fernando Rodríguez', avatar: fer_avatar, online: false },
   { id: 4, name: 'Desarrollo Cuyo - Grupo 4', avatar: null, initial: 'DC', online: true },
 ]
 
@@ -24,7 +29,9 @@ const initialMessages = {
   ],
   4: [
     { from: 'them', text: 'Vane: Chicos, actualicen la rama main', time: '09:00' },
-    { from: 'me', text: 'Dale, ahora la actualizo', time: '09:15' },
+    { from: 'them', text: 'Tomi: Ya la actualicé, ya está lista para usar', time: '09:05' },
+    { from: 'them', text: 'Fer: Listo, ya está la maqueta, ahora a subirla', time: '09:15' },
+    { from: 'them', text: 'Desarrollo Cuyo - Grupo 4: ¡Feliz Día de la Ingeniería!', time: '09:30' },
   ],
 }
 
@@ -60,6 +67,7 @@ function FloatingChat() {
 
   const sendMessage = (friendId, text) => {
     if (!text || !text.trim()) return
+    const emoji = emojis[Math.floor(Math.random() * emojis.length)]
     const msgs = messages[friendId] || []
     setMessages({
       ...messages,
@@ -67,6 +75,17 @@ function FloatingChat() {
     })
     setInputText(prev => ({ ...prev, [friendId]: '' }))
     scrollToBottom(friendId)
+
+    setTimeout(() => {
+      setMessages(prev => {
+        const current = prev[friendId] || []
+        return {
+          ...prev,
+          [friendId]: [...current, { from: 'them', text: emoji, time: 'Ahora' }],
+        }
+      })
+      scrollToBottom(friendId)
+    }, 1000 + Math.random() * 2000)
   }
 
   return (

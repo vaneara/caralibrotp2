@@ -4,7 +4,7 @@ import CommentBubble from './CommentBubble'
 import PostFeedback from './PostFeedback'
 
 function PostCard({ post }) {
-  const { author, avatarSrc, avatarInitials, timestamp, visibility, content, image, feedback, comments } = post
+  const { author, avatarSrc, avatarInitials, timestamp, visibility, content, image, feedback, comments, profileLink } = post
 
   return (
     <div className="card">
@@ -12,7 +12,7 @@ function PostCard({ post }) {
         avatarSrc={avatarSrc}
         avatarInitials={avatarInitials}
         name={author}
-        profileLink="/perfiles/vane-ara"
+        profileLink={profileLink || '/perfiles/vane-ara'}
         timestamp={timestamp}
         visibility={visibility}
       />

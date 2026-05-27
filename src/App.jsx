@@ -4,12 +4,14 @@ import Bitacora from './pages/Bitacora'
 import Perfiles from './pages/Perfiles'
 import Mensajes from './pages/Mensajes'
 import Eventos from './pages/Eventos'
+import Noticias from './pages/Noticias'
 import Login from './pages/Login'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/noticias" element={<Noticias />} />
       <Route path="/bitacora" element={<Bitacora />} />
       <Route path="/perfiles" element={<Perfiles />} />
       <Route path="/perfiles/:slug" element={<Perfiles />} />
