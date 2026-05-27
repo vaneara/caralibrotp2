@@ -1,4 +1,7 @@
 import Layout from '../components/Layout'
+import { Link } from 'react-router-dom'
+
+import avatarvane from "../assets/img/avatarvane.jpg"
 
 function Home() {
   return (
@@ -13,14 +16,11 @@ function Home() {
           <textarea
             id="status-textarea"
             placeholder="¿Qué tienes en mente, Equipo?"
-          ></textarea>
+          />
         </div>
 
         <div className="card-footer">
-          <button
-            className="fb-button fb-button-primary"
-            id="post-button"
-          >
+          <button className="fb-button fb-button-primary" id="post-button">
             Publicar
           </button>
         </div>
@@ -36,30 +36,35 @@ function Home() {
             marginBottom: '12px'
           }}
         >
-          <div
-            className="user-avatar"
-            style={{
-              width: '40px',
-              height: '40px',
-              backgroundColor: '#3b5998',
-              borderRadius: '2px',
-              color: 'white',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 'bold'
-            }}
-          >
-            AP
-          </div>
+          {/* Avatar */}
+          <Link to="/perfiles/vane-ara">
+            <div
+              className="user-avatar"
+              style={{
+                width: '40px',
+                height: '40px',
+                backgroundColor: '#3b5998',
+                borderRadius: '2px',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              AP
+            </div>
+          </Link>
 
           <div>
-            <a
-              href="#"
-              style={{ fontWeight: 'bold', fontSize: '13px' }}
+            {/* Nombre  */}
+            <Link
+              to="/perfiles/vane-ara"
+              style={{ fontWeight: 'bold', fontSize: '13px', textDecoration: 'none', color: '#3b5998' }}
             >
               Desarrollo Cuyo - Grupo 4
-            </a>
+            </Link>
 
             <div style={{ color: '#606770', fontSize: '11px' }}>
               Hace 2 horas · Público
@@ -72,12 +77,9 @@ function Home() {
             Bienvenidos a nuestro archivo digital! Somos un equipo apasionado
             por el desarrollo web y estamos trabajando alegremente para curar
             los mejores recuerdos de nuestro proyecto académico.
-            <br />
-            <br />
-            Nuestro propósito es compartir sobre la evolución de las
-            interfaces digitales mientras aprendemos las mejores prácticas de
-            frontend. ¡Aquí está el equipo detrás de la magia! #Grupo4 #2026
-            #Frontend
+            <br /><br />
+            Nuestro propósito es compartir sobre la evolución de las interfaces digitales
+            mientras aprendemos las mejores prácticas de frontend. #Grupo4 #2026
           </p>
 
           <img
@@ -92,19 +94,12 @@ function Home() {
         </div>
 
         <div className="post-actions">
-          <a href="#" className="action-link" id="like-btn">
-            Me gusta
-          </a>
-
-          <a href="#" className="action-link">
-            Comentar
-          </a>
-
-          <a href="#" className="action-link">
-            Compartir
-          </a>
+          <a href="#" className="action-link">Me gusta</a>
+          <a href="#" className="action-link">Comentar</a>
+          <a href="#" className="action-link">Compartir</a>
         </div>
 
+        {/* Comentario */}
         <div className="comments-section" style={{ marginTop: '15px' }}>
           <div
             style={{
@@ -113,15 +108,19 @@ function Home() {
               marginBottom: '10px'
             }}
           >
-            <img
-              src="img/avatarvane.jpg"
-              alt="avatar"
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '2px'
-              }}
-            />
+            {/* Avatar */}
+            <Link to="/perfiles/vane-ara">
+              <img
+                src={avatarvane}
+                alt="avatar"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '2px',
+                  cursor: 'pointer'
+                }}
+              />
+            </Link>
 
             <div
               style={{
@@ -131,24 +130,26 @@ function Home() {
                 width: '100%'
               }}
             >
-              <a
-                href="/perfil-vane"
-                style={{ fontWeight: 'bold', fontSize: '11px' }}
+              {/* Nombre */}
+              <Link
+                to="/perfiles/vane-ara"
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '11px',
+                  textDecoration: 'none',
+                  color: '#3b5998'
+                }}
               >
                 Vane Ara
-              </a>
+              </Link>
 
               <p style={{ margin: '2px 0', fontSize: '13px' }}>
                 💻 Integrantes del proyecto:
-                <br />
-                <br />
-                Vanesa Aracena
-                <br />
-                Tomás Maldocena
-                <br />
+                <br /><br />
+                Vanesa Aracena<br />
+                Tomás Maldocena<br />
                 Fernando Rodríguez
-                <br />
-                <br />
+                <br /><br />
                 2° comisión E- 🤓
               </p>
             </div>
@@ -163,10 +164,7 @@ function Home() {
               borderRadius: '2px'
             }}
           >
-            <span
-              id="like-counter"
-              style={{ fontSize: '11px', color: '#65676b' }}
-            >
+            <span style={{ fontSize: '11px', color: '#65676b' }}>
               👍 Tomi M. y otras 14 personas
             </span>
           </div>

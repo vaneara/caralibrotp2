@@ -1,64 +1,41 @@
-function MemberCard({ nombre, rol, imagen }) {
+import { Link } from "react-router-dom";
 
+function MemberCard({ nombre, rol, imagen, slug }) {
   return (
-    <div
-      className="member-item"
+    <Link
+      to={`/perfiles/${slug}`}   
       style={{
-        display: 'flex',
-        gap: '10px',
-        marginBottom: '15px'
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "6px",
+        textDecoration: "none",
+        color: "black",
+        borderBottom: "1px solid #ddd"
       }}
+      className="member-card"
     >
-
-      <div
+      <img
+        src={imagen}
+        alt={nombre}
         style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: '#ccc',
-          borderRadius: '2px'
+          width: "32px",
+          height: "32px",
+          borderRadius: "2px",
+          border: "1px solid #999"
         }}
-      >
-        <img
-          src={imagen}
-          alt={nombre}
-          style={{
-            width: '100%',
-            borderRadius: '2px'
-          }}
-        />
-      </div>
+      />
 
       <div>
-        <a
-          href="#"
-          style={{
-            fontWeight: 'bold',
-            fontSize: '12px',
-            display: 'block'
-          }}
-        >
+        <div style={{ fontSize: "11px", fontWeight: "bold" }}>
           {nombre}
-        </a>
-
-        <div
-          style={{
-            color: '#606770',
-            fontSize: '11px'
-          }}
-        >
+        </div>
+        <div style={{ fontSize: "10px", color: "#666" }}>
           {rol}
         </div>
-
-        <button
-          className="fb-button"
-          style={{ marginTop: '5px' }}
-        >
-          Añadir
-        </button>
       </div>
-
-    </div>
-  )
+    </Link>
+  );
 }
 
-export default MemberCard
+export default MemberCard;

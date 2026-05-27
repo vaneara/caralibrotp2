@@ -9,17 +9,17 @@ function Layout({ children, rightSidebarTop }) {
       <Header />
 
       <div className="app-container">
-        <main>{children}</main>
+        <main className="main-content">
+          {children}
+        </main>
 
         <aside className="right-sidebar">
           {rightSidebarTop}
-
           <Sidebar />
         </aside>
       </div>
 
       <Footer />
-
       <FloatingChat />
     </>
   )

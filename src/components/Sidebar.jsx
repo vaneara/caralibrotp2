@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
+import defaultImg from "../assets/img/default.png"
+import tomi from "../assets/img/tomi.png"
+
 function Sidebar() {
   return (
     <>
@@ -17,13 +20,14 @@ function Sidebar() {
               width: '40px',
               height: '40px',
               backgroundColor: '#ccc',
-              borderRadius: '2px'
+              borderRadius: '2px',
+              overflow: 'hidden'
             }}
           >
             <img
-              src="img/default.png"
+              src={defaultImg}
               alt="User"
-              style={{ width: '100%' }}
+              style={{ width: '100%', height: '100%' }}
             />
           </div>
 
@@ -42,10 +46,12 @@ function Sidebar() {
               <span className="icon">🏠</span>
               <NavLink to="/" end>Noticias</NavLink>
             </li>
+
             <li>
               <span className="icon">💬</span>
               <NavLink to="/mensajes">Mensajes</NavLink>
             </li>
+
             <li>
               <span className="icon">📅</span>
               <a href="#">Eventos</a>
@@ -78,14 +84,14 @@ function Sidebar() {
               style={{
                 width: '50px',
                 height: '50px',
-                backgroundColor: '#ccc',
-                borderRadius: '2px'
+                borderRadius: '2px',
+                overflow: 'hidden'
               }}
             >
               <img
-                src="img/tomi.png"
+                src={tomi}
                 alt="Tomi"
-                style={{ width: '100%', borderRadius: '2px' }}
+                style={{ width: '100%', height: '100%' }}
               />
             </div>
 
@@ -105,10 +111,7 @@ function Sidebar() {
                 Frontend Dev
               </div>
 
-              <button
-                className="fb-button"
-                style={{ marginTop: '5px' }}
-              >
+              <button className="fb-button" style={{ marginTop: '5px' }}>
                 Añadir
               </button>
             </div>

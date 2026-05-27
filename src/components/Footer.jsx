@@ -1,26 +1,36 @@
+import { useNavigate } from "react-router-dom";
+
 function Footer() {
+  const navigate = useNavigate();
+
   return (
     <footer>
-      <div className="footer-links">
-        <a href="#">Español</a>
-        <a href="#">English (US)</a>
-        <a href="#">Português (Brasil)</a>
-        <a href="#">Français (France)</a>
-        <a href="#">Deutsch</a>
-        <a href="#">Italiano</a>
+      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <button className="fb-button" onClick={() => navigate("/")}>
+          Volver al Inicio
+        </button>
+
+        <button className="fb-button" onClick={() => navigate("/bitacora")}>
+          Ir a Bitácora
+        </button>
       </div>
 
-      <div
-        style={{
-          margin: '10px 0',
-          borderTop: '1px solid #dddfe2',
-          paddingTop: '10px'
-        }}
-      >
+      <div className="footer-links">
+        <span>Español</span>
+        <span>English (US)</span>
+        <span>Português (Brasil)</span>
+        <span>Français (France)</span>
+        <span>Deutsch</span>
+        <span>Italiano</span>
+      </div>
+
+      <hr style={{ border: "1px solid #dddfe2", margin: "10px 0" }} />
+
+      <div style={{ textAlign: "center" }}>
         © 2010 School Project Archive · About · Privacy · Terms · Help
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
