@@ -1,36 +1,14 @@
-import MemberCard from "./MemberCard";
+import MemberCard from './MemberCard'
+import { miembros as defaultMiembros } from '../data/miembros'
 
-import tomi from "../assets/img/tomi.png";
-import avatarvane from "../assets/img/avatarvane.jpg";
-import ferAvatar from "../assets/img/fer_avatar.jpg";
-
-function MemberList() {
-  const miembros = [
-    {
-      nombre: "Tomi M.",
-      rol: "Frontend Dev",
-      imagen: tomi,
-      slug: "tomi-m"
-    },
-    {
-      nombre: "Vane Ara",
-      rol: "Developer",
-      imagen: avatarvane,
-      slug: "vane-ara"
-    },
-    {
-      nombre: "Fernando Rodriguez",
-      rol: "Backend Developer",
-      imagen: ferAvatar,
-      slug: "fernando-rodriguez"
-    }
-  ];
+function MemberList({ members }) {
+  const data = members || defaultMiembros
 
   return (
     <div className="member-list">
-      {miembros.map((miembro, index) => (
+      {data.map((miembro, index) => (
         <MemberCard
-          key={index}
+          key={miembro.slug || index}
           nombre={miembro.nombre}
           rol={miembro.rol}
           imagen={miembro.imagen}
@@ -38,7 +16,7 @@ function MemberList() {
         />
       ))}
     </div>
-  );
+  )
 }
 
-export default MemberList;
+export default MemberList

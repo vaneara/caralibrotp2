@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import SearchBar from './SearchBar'
 
 function Header({ searchPlaceholder = 'Buscar personas, grupos y cosas' }) {
   return (
@@ -6,38 +7,25 @@ function Header({ searchPlaceholder = 'Buscar personas, grupos y cosas' }) {
       <div className="header-container">
 
         <div className="logo-search">
-          <NavLink to="/" end className="logo">
+          <NavLink to="/home" end className="logo">
             caralibro
           </NavLink>
 
-          <div className="search-container">
-            <input
-              type="text"
-              id="global-search"
-              placeholder={searchPlaceholder}
-              aria-label="Buscar"
-            />
-          </div>
+          <SearchBar placeholder={searchPlaceholder} />
         </div>
 
         <nav>
           <ul>
             <li>
-              <NavLink to="/" end>
-                Inicio
-              </NavLink>
+              <NavLink to="/home" end>Inicio</NavLink>
             </li>
 
             <li>
-              <NavLink to="/perfiles">
-                Perfiles
-              </NavLink>
+              <NavLink to="/perfiles">Perfiles</NavLink>
             </li>
 
             <li>
-              <NavLink to="/bitacora">
-                Bitácora
-              </NavLink>
+              <NavLink to="/bitacora">Bitácora</NavLink>
             </li>
           </ul>
         </nav>

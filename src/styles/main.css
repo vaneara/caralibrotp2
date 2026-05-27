@@ -249,6 +249,10 @@ main {
     text-decoration: underline;
 }
 
+.post-actions a.liked {
+    color: var(--fb-blue);
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -259,6 +263,10 @@ main {
 .section-header h1 {
     font-size: 20px;
     color: var(--fb-text-black);
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: normal;
+    margin: 0;
 }
 
 /* --- Right Sidebar --- */
@@ -310,6 +318,306 @@ main {
     background-color: var(--profile-accent-hover);
 }
 
+/* --- Input --- */
+.input-field {
+  font-family: inherit;
+  outline: none;
+  font-size: 11px;
+}
+
+.input-default {
+  padding: 6px 8px;
+  border: 1px solid var(--fb-border);
+  border-radius: 2px;
+}
+
+.input-default:focus {
+  border-color: var(--fb-blue);
+}
+
+.input-search {
+  width: 100%;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.input-textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--fb-border);
+  padding: 10px;
+  border-radius: 2px;
+  min-height: 60px;
+  font-size: 13px;
+}
+
+.input-textarea:focus {
+  border-color: var(--fb-blue);
+}
+
+.input-chat {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--fb-border);
+  border-radius: 2px;
+  font-size: 12px;
+  resize: none;
+}
+
+.input-chat:focus {
+  border-color: var(--fb-blue);
+}
+
+/* --- Avatar --- */
+.avatar-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.avatar-img {
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid #999;
+}
+
+.avatar-initials {
+  background-color: var(--fb-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.avatar-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.avatar-dot.online {
+  background-color: #42b72a;
+}
+
+.avatar-dot.offline {
+  background-color: #bec3c9;
+}
+
+/* --- Molecules --- */
+.conv-item:hover {
+  background-color: #f0f2f5;
+}
+
+.friend-item:hover {
+  background-color: #f0f2f5 !important;
+}
+
+.comment-bubble a:hover {
+  text-decoration: underline;
+}
+
+.msg-bubble .timestamp {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.msg-bubble.own .timestamp {
+  margin-top: 3px;
+}
+
+.chat-input-row textarea {
+  font-family: inherit;
+}
+
+/* --- Floating Chat --- */
+.floating-chat-wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.chat-popup {
+    width: 320px;
+    background-color: #fff;
+    border: 1px solid var(--fb-border);
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-popup-header {
+    background-color: var(--fb-blue);
+    color: white;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat-popup-header-name {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.chat-popup-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0 2px;
+}
+
+.chat-popup-body {
+    height: 220px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #f6f7f9;
+}
+
+.chat-sidebar {
+    width: 240px;
+    background-color: #fff;
+    border: 1px solid var(--fb-border);
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.chat-sidebar-toggle {
+    background-color: #f6f7f9;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--fb-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.chat-sidebar-toggle-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #1c1e21;
+}
+
+.chat-sidebar-toggle-arrow {
+    font-size: 10px;
+    color: var(--fb-text-gray);
+}
+
+.chat-sidebar-search {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e9ebee;
+}
+
+.chat-sidebar-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.chat-section-label {
+    padding: 6px 10px 2px;
+    font-size: 10px;
+    color: var(--fb-text-gray);
+    font-weight: bold;
+}
+
+.chat-empty {
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--fb-text-gray);
+}
+
+/* --- Messages --- */
+.messages-panel {
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+}
+.conv-list {
+    width: 300px;
+    border-right: 1px solid var(--fb-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.conv-list-header,
+.msg-thread-header {
+    padding: 10px 12px;
+    margin: 0;
+    border-bottom: 1px solid var(--fb-border);
+}
+
+.conv-list-search {
+    padding: 8px;
+    border-bottom: 1px solid #e9ebee;
+}
+
+.conv-list-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.msg-thread {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.msg-thread-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* --- Login --- */
+.login-input {
+    border: 1px solid #bdc7d8;
+    border-radius: 3px;
+    padding: 8px 10px;
+    font-size: 13px;
+    outline: none;
+}
+
+.login-select {
+    border: 1px solid #bdc7d8;
+    border-radius: 2px;
+    padding: 5px 6px;
+    font-size: 11px;
+    outline: none;
+    color: #1c1e21;
+    background-color: white;
+}
+
 /* --- Footer --- */
 footer {
     max-width: var(--max-width);
@@ -328,6 +636,31 @@ footer {
 }
 
 /* --- Member Cards --- */
+
+.member-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.member-card:hover {
+    background-color: #f0f2f5;
+    text-decoration: none;
+}
+
+.member-card .member-name {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.member-card .member-role {
+    font-size: 10px;
+    color: #666;
+}
 
 .member-item {
     display: flex;

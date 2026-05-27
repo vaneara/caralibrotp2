@@ -1,18 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
+import Button from './Button'
 
 function Footer() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <footer>
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-        <button className="fb-button" onClick={() => navigate("/")}>
-          Volver al Inicio
-        </button>
-
-        <button className="fb-button" onClick={() => navigate("/bitacora")}>
-          Ir a Bitácora
-        </button>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+        <Button onClick={() => navigate('/')}>Volver al Inicio</Button>
+        <Button onClick={() => navigate('/bitacora')}>Ir a Bitácora</Button>
       </div>
 
       <div className="footer-links">
@@ -24,13 +20,13 @@ function Footer() {
         <span>Italiano</span>
       </div>
 
-      <hr style={{ border: "1px solid #dddfe2", margin: "10px 0" }} />
+      <hr style={{ border: '1px solid #dddfe2', margin: '10px 0' }} />
 
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         © 2010 School Project Archive · About · Privacy · Terms · Help
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

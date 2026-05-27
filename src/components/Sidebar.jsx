@@ -1,60 +1,40 @@
 import { NavLink } from 'react-router-dom'
+import Avatar from './Avatar'
+import SidebarWidget from './SidebarWidget'
+import Icon from './Icon'
+import Button from './Button'
 
-import defaultImg from "../assets/img/default.png"
-import tomi from "../assets/img/tomi.png"
+import defaultImg from '../assets/img/default.png'
+import tomi from '../assets/img/tomi.png'
+import avatarvane from '../assets/img/avatarvane.jpg'
+import avatarfer from '../assets/img/fer_avatar.jpg'
 
 function Sidebar() {
   return (
     <>
-      <div className="widget">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            marginBottom: '15px'
-          }}
-        >
-          <div
-            style={{
-              width: '40px',
-              height: '40px',
-              backgroundColor: '#ccc',
-              borderRadius: '2px',
-              overflow: 'hidden'
-            }}
-          >
-            <img
-              src={defaultImg}
-              alt="User"
-              style={{ width: '100%', height: '100%' }}
-            />
-          </div>
+      <SidebarWidget>
+        <div className="member-item">
+          <Avatar src={defaultImg} alt="Visitante" size="lg" />
 
           <div>
-            <div style={{ fontWeight: 'bold' }}>Visitante</div>
-
-            <a href="#" style={{ fontSize: '11px' }}>
-              Editar perfil
-            </a>
+            <div className="member-name">Visitante</div>
+            <a href="#" style={{ fontSize: '11px' }}>Editar perfil</a>
           </div>
         </div>
 
         <nav>
           <ul>
             <li>
-              <span className="icon">🏠</span>
+              <Icon>🏠</Icon>
               <NavLink to="/" end>Noticias</NavLink>
             </li>
-
             <li>
-              <span className="icon">💬</span>
+              <Icon>💬</Icon>
               <NavLink to="/mensajes">Mensajes</NavLink>
             </li>
-
             <li>
-              <span className="icon">📅</span>
-              <a href="#">Eventos</a>
+              <Icon>📅</Icon>
+              <NavLink to="/eventos">Eventos</NavLink>
             </li>
           </ul>
 
@@ -62,62 +42,55 @@ function Sidebar() {
 
           <ul>
             <li>
-              <span className="icon">📝</span>
+              <Icon>📝</Icon>
               <NavLink to="/bitacora">Bitácora de Proyecto</NavLink>
             </li>
           </ul>
         </nav>
-      </div>
+      </SidebarWidget>
 
-      <div className="widget">
-        <div className="widget-title">
-          <span>PERSONAS QUE QUIZÁ CONOZCAS</span>
-          <a href="#">Ver todo</a>
-        </div>
-
+      <SidebarWidget title="PERSONAS QUE QUIZÁ CONOZCAS" titleLink="Ver todo">
         <div className="member-list">
-          <div
-            className="member-item"
-            style={{ display: 'flex', gap: '10px' }}
-          >
-            <div
-              style={{
-                width: '50px',
-                height: '50px',
-                borderRadius: '2px',
-                overflow: 'hidden'
-              }}
-            >
-              <img
-                src={tomi}
-                alt="Tomi"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
+          <div className="member-item">
+            <Avatar src={tomi} alt="Tomi M." size="xl" />
 
             <div>
-              <a
-                href="/perfil-tomi"
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: '12px',
-                  display: 'block'
-                }}
-              >
+              <a href="/perfiles/tomi-m" className="member-name">
                 Tomi M.
               </a>
 
-              <div style={{ color: '#606770', fontSize: '11px' }}>
-                Frontend Dev
-              </div>
+              <div className="member-role">Frontend Dev</div>
 
-              <button className="fb-button" style={{ marginTop: '5px' }}>
-                Añadir
-              </button>
+              <Button style={{ marginTop: '5px' }}>Añadir</Button>
+            </div>
+          </div>
+          <div className="member-item">
+            <Avatar src={avatarvane} alt="Vane A." size="xl" />
+
+            <div>
+              <a href="/perfiles/vane-ara" className="member-name">
+                Vane A.
+              </a>
+
+              <div className="member-role">Dev</div>
+
+              <Button style={{ marginTop: '5px' }}>Añadir</Button>
+            </div>
+          </div><div className="member-item">
+            <Avatar src={avatarfer} alt="Fer R." size="xl" />
+
+            <div>
+              <a href="/perfiles/fernando-rodriguez" className="member-name">
+                Fer R.
+              </a>
+
+              <div className="member-role">Backend Dev</div>
+
+              <Button style={{ marginTop: '5px' }}>Añadir</Button>
             </div>
           </div>
         </div>
-      </div>
+      </SidebarWidget>
     </>
   )
 }

@@ -3,17 +3,19 @@ import Home from './pages/Home'
 import Bitacora from './pages/Bitacora'
 import Perfiles from './pages/Perfiles'
 import Mensajes from './pages/Mensajes'
+import Eventos from './pages/Eventos'
 import Login from './pages/Login'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Login />} />
       <Route path="/bitacora" element={<Bitacora />} />
       <Route path="/perfiles" element={<Perfiles />} />
       <Route path="/perfiles/:slug" element={<Perfiles />} />
       <Route path="/mensajes" element={<Mensajes />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/eventos" element={<Eventos />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   )
 }
