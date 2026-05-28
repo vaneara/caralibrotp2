@@ -53,13 +53,14 @@ export const miembros = [
         "Dread Mar I",
         "No Te Va Gustar",
         "IKV",
-        "El Plan de la Mariposa"
+        "El Plan de la Mariposa",
+        "Silvestre y la Naranja"
       ],
 
       amigos: 325,
       extra: {
         frase: "La creatividad es la inteligencia divirtiéndose",
-        intereses: ["Cerámica artesanal", "Jardinería", "Fotografía analógica", "Cocina vegana"],
+        intereses: ["Cerámica artesanal", "Naturaleza", "Fotografía", "Cocina saludable"],
         cita: "No hay arte sin corazón"
       }
     }

@@ -19,6 +19,17 @@ function Perfiles() {
   const [searchTerm, setSearchTerm] = useState('')
   const [filtroCategoria, setFiltroCategoria] = useState('')
 
+  const [fotoActual, setFotoActual] = useState(null);
+  const fotos = [
+   {img: user.imagen,
+    titulo: 'Foto de perfil'
+   },
+   ...(user.perfilCompleto?.peliculas || []).map((p) => ({
+    img: p.img,
+    titulo: p.titulo
+  }))
+  ];
+
   const categorias = useMemo(() => [...new Set(famosos.map(f => f.categoria))], [])
   const filtrados = useMemo(() => {
     return famosos.filter(f => {
@@ -122,15 +133,17 @@ function Perfiles() {
               {activeTab === 'Fotos' && (
                 <div className="profile-photos">
                   <p style={{ fontSize: '12px', color: '#606770', marginBottom: '10px' }}>
-                    {user.perfilCompleto?.peliculas?.length + 1 || 1} foto
+                    {user.perfilCompleto?.peliculas?.length + 1 || 1} fotos
                   </p>
                   <div className="profile-photos-grid">
-                    <div className="profile-photo-item">
+                    <div className="profile-photo-item"
+                       onClick={() => setFotoActual(0)}>
                       <img src={user.imagen} alt="Foto de perfil" />
                       <span>Foto de perfil</span>
                     </div>
                     {user.perfilCompleto?.peliculas?.map((p, i) => (
-                      <div key={i} className="profile-photo-item">
+                      <div key={i} className="profile-photo-item"
+                        onClick={() => setFotoActual(i + 1)}>
                         <img src={p.img} alt={p.titulo} />
                         <span>{p.titulo.split('(')[0].trim()}</span>
                       </div>
@@ -138,6 +151,49 @@ function Perfiles() {
                   </div>
                 </div>
               )}
+              {fotoActual !== null && (
+                <div className="photo-modal">
+                <button
+                className="close-btn"
+                onClick={() => setFotoActual(null)}>
+                ✕
+                </button>
+
+                <button
+                className="nav-btn left"
+                onClick={() =>
+                setFotoActual(
+                fotoActual === 0
+                ? fotos.length - 1
+                : fotoActual - 1
+                )}
+                >
+                ‹
+                </button>
+
+                <img
+                className="modal-image"
+                src={fotos[fotoActual].img}
+                alt={fotos[fotoActual].titulo}
+                />
+
+                <button
+                className="nav-btn right"
+                onClick={() =>
+                setFotoActual(
+                fotoActual === fotos.length - 1
+                ? 0
+                : fotoActual + 1
+                )}
+                >
+                ›
+                </button>
+
+               <p className="modal-title">
+                {fotos[fotoActual].titulo}
+              </p>
+              </div>
+               )}
 
               {activeTab === 'Más' && (
                 <div className="profile-extra">

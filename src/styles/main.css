@@ -1172,3 +1172,116 @@ footer {
     font-size: 13px;
     color: #606770;
 }
+
+/* GRID DE FOTOS */
+
+.profile-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.profile-photo-item {
+  cursor: pointer;
+}
+
+.profile-photo-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.profile-photo-item img:hover {
+  transform: scale(1.03);
+}
+
+.profile-photo-item span {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: center;
+  color: #606770;
+}
+
+
+/* MODAL / CARRUSEL */
+
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.modal-image {
+  max-width: 85%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 2px;
+  border: 1px solid #c7c7c7;
+  background: white;
+  padding: 6px;
+}
+
+
+/* BOTONES */
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f0f2f5;
+  border: 1px solid #b0b7c3;
+  color: #3b5998;
+  font-size: 40px;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  border-radius: 4px;
+}
+
+.nav-btn:hover {
+  background: #dfe3ee;
+}
+
+.left {
+  left: 25px;
+}
+
+.right {
+  right: 25px;
+}
+
+
+/* CERRAR */
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+
+/* TITULO */
+
+.modal-title {
+  color: white;
+  margin-top: 15px;
+  font-size: 16px;
+  text-align: center;
+}
