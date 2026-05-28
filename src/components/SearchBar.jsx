@@ -1,4 +1,4 @@
-function SearchBar({ placeholder = 'Buscar...', value, onChange }) {
+function SearchBar({ placeholder = 'Buscar...', value, onChange, onFocus }) {
   return (
     <div className="search-container">
       <input
@@ -7,6 +7,7 @@ function SearchBar({ placeholder = 'Buscar...', value, onChange }) {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onFocus={onFocus}
         aria-label="Buscar"
       />
     </div>

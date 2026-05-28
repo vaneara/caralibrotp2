@@ -1,12 +1,13 @@
 import MessageBubble from './MessageBubble'
 import ChatInput from './ChatInput'
 
-function MessageThread({ activeConversation, onSendMessage }) {
+function MessageThread({ activeConversation, onSendMessage, onBack }) {
   const messages = activeConversation?.messages || []
 
   return (
     <div className="msg-thread">
       <div className="card-header msg-thread-header">
+        <button className="msg-back-btn" onClick={onBack}>←</button>
         <span className="card-title">{activeConversation?.name}</span>
       </div>
 

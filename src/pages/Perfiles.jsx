@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Layout from '../components/Layout'
 import MemberList from '../components/MemberList'
 import ProfileHeader from '../components/ProfileHeader'
@@ -8,6 +8,7 @@ import InfoBox from '../components/InfoBox'
 import MovieItem from '../components/MovieItem'
 import PostCard from '../components/PostCard'
 import Avatar from '../components/Avatar'
+import PhotoViewer from '../components/PhotoViewer'
 
 import { miembros } from '../data/miembros'
 import { famosos } from '../data/famosos'
@@ -15,20 +16,16 @@ import { famosos } from '../data/famosos'
 function Perfiles() {
   const { slug } = useParams()
   const user = miembros.find(m => m.slug === slug)
+  const famoso = !user && slug ? famosos.find(f => f.slug === slug) : null
   const [activeTab, setActiveTab] = useState('Muro')
   const [searchTerm, setSearchTerm] = useState('')
   const [filtroCategoria, setFiltroCategoria] = useState('')
 
   const [fotoActual, setFotoActual] = useState(null);
-  const fotos = [
-   {img: user.imagen,
-    titulo: 'Foto de perfil'
-   },
-   ...(user.perfilCompleto?.peliculas || []).map((p) => ({
-    img: p.img,
-    titulo: p.titulo
-  }))
-  ];
+  const fotos = user ? [
+    {img: user.imagen, titulo: 'Foto de perfil'},
+    ...(user.perfilCompleto?.peliculas || []).map(p => ({img: p.img, titulo: p.titulo}))
+  ] : [];
 
   const categorias = useMemo(() => [...new Set(famosos.map(f => f.categoria))], [])
   const filtrados = useMemo(() => {
@@ -43,15 +40,119 @@ function Perfiles() {
     <Layout>
       <main className="profile-wrapper">
         {!slug && (
+          <>
+            <div className="profile-card">
+              <div className="widget-title">Personas que quizá conozcas</div>
+              <MemberList members={miembros} />
+            </div>
+
+            <div className="profile-card" style={{ marginTop: '16px' }}>
+              <div className="widget-title">🔍 Buscar Amigos</div>
+
+              <div className="amigos-search-bar">
+                <input
+                  className="amigos-search-input"
+                  type="text"
+                  placeholder="Buscar por nombre..."
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                />
+                <select
+                  className="amigos-search-select"
+                  value={filtroCategoria}
+                  onChange={e => setFiltroCategoria(e.target.value)}
+                >
+                  <option value="">Todas las categorías</option>
+                  {categorias.map(c => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="amigos-count">
+                {filtrados.length} de {famosos.length} personas
+              </div>
+
+              <div className="amigos-grid">
+                {filtrados.map((f, i) => (
+                  <Link key={i} to={`/perfiles/${f.slug}`} className="amigo-card">
+                    <Avatar src={f.imagen} alt={f.nombre} size="xl" />
+                    <div className="amigo-nombre">{f.nombre}</div>
+                    <div className="amigo-rol">{f.rol}</div>
+                    <div className="amigo-ciudad">{f.ciudad}</div>
+                  </Link>
+                ))}
+              </div>
+
+              {filtrados.length === 0 && (
+                <div className="amigos-empty">
+                  No se encontraron personas para &ldquo;{searchTerm}&rdquo;
+                </div>
+              )}
+            </div>
+          </>
+        )}
+
+        {slug && !user && !famoso && (
           <div className="profile-card">
-            <div className="widget-title">Personas que quizá conozcas</div>
-            <MemberList members={miembros} />
+            <h3>Usuario no encontrado</h3>
           </div>
         )}
 
-        {slug && !user && (
+        {slug && famoso && (
           <div className="profile-card">
-            <h3>Usuario no encontrado</h3>
+            <ProfileHeader
+              image={famoso.imagen}
+              name={famoso.nombre}
+              role={famoso.rol}
+              bio={famoso.ciudad ? `Vive en ${famoso.ciudad}` : ''}
+            />
+
+            <ProfileMenu
+              tabs={['Muro', 'Información']}
+              activeTab={activeTab}
+              onTabClick={setActiveTab}
+            />
+
+            <div className="profile-body">
+              {activeTab === 'Muro' && (
+                <PostCard
+                  post={{
+                    author: famoso.nombre,
+                    avatarSrc: famoso.imagen,
+                    profileLink: `/perfiles/${famoso.slug}`,
+                    timestamp: 'Hoy',
+                    visibility: 'Público',
+                    content: `${famoso.nombre.split(' ')[0]} está disfrutando de un gran día en Caralibro.`,
+                  }}
+                />
+              )}
+
+              {activeTab === 'Información' && (
+                <>
+                  <InfoBox title="Información">
+                    <p>Rol: {famoso.rol}</p>
+                    <p>Categoría: {famoso.categoria}</p>
+                    <p>Ciudad: {famoso.ciudad || '—'}</p>
+                  </InfoBox>
+
+                  <InfoBox title="Detalles">
+                    <p>Se unió a Caralibro en 2026</p>
+                    <p>Última vez activo hoy</p>
+                    <p>
+                      <a
+                        href={`https://es.wikipedia.org/wiki/${famoso.nombre.replace(/ /g, '_')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: '#3b5998', fontSize: '12px' }}
+                      >
+                        Ver en Wikipedia
+                      </a>
+                    </p>
+                  </InfoBox>
+                </>
+              )}
+            </div>
           </div>
         )}
 
@@ -152,48 +253,12 @@ function Perfiles() {
                 </div>
               )}
               {fotoActual !== null && (
-                <div className="photo-modal">
-                <button
-                className="close-btn"
-                onClick={() => setFotoActual(null)}>
-                ✕
-                </button>
-
-                <button
-                className="nav-btn left"
-                onClick={() =>
-                setFotoActual(
-                fotoActual === 0
-                ? fotos.length - 1
-                : fotoActual - 1
-                )}
-                >
-                ‹
-                </button>
-
-                <img
-                className="modal-image"
-                src={fotos[fotoActual].img}
-                alt={fotos[fotoActual].titulo}
+                <PhotoViewer
+                  photos={fotos}
+                  initialIndex={fotoActual}
+                  onClose={() => setFotoActual(null)}
                 />
-
-                <button
-                className="nav-btn right"
-                onClick={() =>
-                setFotoActual(
-                fotoActual === fotos.length - 1
-                ? 0
-                : fotoActual + 1
-                )}
-                >
-                ›
-                </button>
-
-               <p className="modal-title">
-                {fotos[fotoActual].titulo}
-              </p>
-              </div>
-               )}
+              )}
 
               {activeTab === 'Más' && (
                 <div className="profile-extra">
@@ -229,51 +294,7 @@ function Perfiles() {
           </div>
         )}
 
-        {/* Buscar Amigos */}
-        <div className="profile-card" style={{ marginTop: '16px' }}>
-          <div className="widget-title">🔍 Buscar Amigos</div>
 
-          <div className="amigos-search-bar">
-            <input
-              className="amigos-search-input"
-              type="text"
-              placeholder="Buscar por nombre..."
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-            />
-            <select
-              className="amigos-search-select"
-              value={filtroCategoria}
-              onChange={e => setFiltroCategoria(e.target.value)}
-            >
-              <option value="">Todas las categorías</option>
-              {categorias.map(c => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="amigos-count">
-            {filtrados.length} de {famosos.length} personas
-          </div>
-
-          <div className="amigos-grid">
-            {filtrados.map((f, i) => (
-              <div key={i} className="amigo-card">
-                <Avatar src={f.imagen} alt={f.nombre} size="xl" />
-                <div className="amigo-nombre">{f.nombre}</div>
-                <div className="amigo-rol">{f.rol}</div>
-                <div className="amigo-ciudad">{f.ciudad}</div>
-              </div>
-            ))}
-          </div>
-
-          {filtrados.length === 0 && (
-            <div className="amigos-empty">
-              No se encontraron personas para &ldquo;{searchTerm}&rdquo;
-            </div>
-          )}
-        </div>
       </main>
     </Layout>
   )
