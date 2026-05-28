@@ -1,9 +1,16 @@
-# TP1 Frontend - Caralibro (Archive 2010)
+# Caralibro TP2 — Facebook 2010 Clone
 
-## Descripción del Proyecto
-Este proyecto es una plataforma social retro inspirada en la estética de Facebook de principios de la década de 2010. Forma parte del Trabajo Práctico 1 de la materia Frontend, centrado en la estructura de archivos, diseño adaptable e interactividad básica.
+![](img/logo.png)
 
-El sitio permite explorar la portada del equipo (estilo News Feed), la bitácora de desarrollo (estilo Notas) y los perfiles individuales de los integrantes.
+**Deploy:** https://caralibro-tp2.vercel.app/
+
+---
+
+## Descripción
+
+SPA desarrollada con React + Vite que recrea la experiencia visual e interactiva de Facebook circa 2010. Incluye muro de posts con imágenes y emojis, mensajería con auto-respuesta, perfiles de equipo y personajes famosos, bitácora de desarrollo persistida en localStorage, eventos con RSVP, y una página de noticias que consume APIs públicas (feriados, cotizaciones, clima). Diseño responsive con estética retro auténtica (bordes cuadrados, azules #3b5998, tipografía sistema, transiciones de 150-200ms).
+
+---
 
 ## Integrantes
 
@@ -11,92 +18,210 @@ El sitio permite explorar la portada del equipo (estilo News Feed), la bitácora
 - Tomás Maldocena – https://github.com/tmaldocena
 - Fernando Rodríguez – https://github.com/Ferchulobo777
 
+---
+
 ## Tecnologías Utilizadas
 
-- HTML
-- CSS
-- JavaScript
-- Google Fonts
-- Diseño responsive 
+- React 19 + Vite 8
+- react-router-dom (navegación SPA declarativa)
+- Atomic Design (arquitectura de componentes en atoms / molecules / organisms)
+- CSS vanilla con variables + media queries
+- localStorage (persistencia de posts, notas y datos de sesión)
+- ArgentinaDatos API (feriados 2026, cotizaciones USD/EUR/BRL)
+- Open-Meteo API (clima actual de San Juan, Mendoza, San Luis, Buenos Aires)
+
+---
 
 ## Estructura de Archivos
-- `/index.html`: Portada principal y muro de noticias.
-- `/bitacora.html`: Registro de decisiones y progreso del proyecto.
-- `/perfil-template.html`: Plantilla base para los integrantes del grupo.
-- `/css/main.css`: Estilos globales y variables de diseño.
-- `/css/responsive.css`: Implementación de breakpoints (400px, 900px, 1200px).
-- `/js/core.js`: Lógica global del sitio.
-- `/js/interactions.js`: Funciones interactivas específicas.
-- `/img/`: Carpeta para imágenes y assets.
-- `/design/`: Capturas de pantalla del diseño original en Figma.
+
+```
+src/
+├── assets/img/               # Imágenes del equipo (avatares, logos)
+├── components/
+│   ├── atoms/                # Bloques fundamentales
+│   │   ├── Avatar.jsx        # Imagen/iniciales, 6 tamaños, link wrapper
+│   │   ├── Button.jsx        # Variantes primary/secondary
+│   │   ├── Input.jsx         # text/search/textarea/chat variants
+│   │   ├── Badge.jsx         # Contador de notificaciones
+│   │   └── ...               # Timestamp, Icon
+│   ├── molecules/            # Combinaciones de átomos
+│   │   ├── SearchBar.jsx     # Input de búsqueda controlado
+│   │   ├── MessageBubble.jsx # Burbuja de chat (propio/recibido)
+│   │   ├── ChatInput.jsx     # Input con Enter-to-send
+│   │   ├── PostActions.jsx   # Like/Comentar/Compartir toggles
+│   │   ├── CommentBubble.jsx # Avatar + nombre + texto
+│   │   ├── ConversationItem.jsx, FriendListItem.jsx
+│   │   ├── SidebarWidget.jsx, InputField.jsx
+│   │   ├── EmojiPicker.jsx, PhotoViewer.jsx
+│   │   └── ...
+│   └── organisms/            # Secciones complejas
+│       ├── PostCard.jsx      # Post completo con imágenes carrusel
+│       ├── StatusBox.jsx     # Crear post con imágenes + emojis
+│       ├── NoteCard.jsx      # Nota de bitácora
+│       ├── ConversationList.jsx, MessageThread.jsx
+│       ├── ProfileHeader.jsx, ProfileMenu.jsx, InfoBox.jsx
+│       ├── Header.jsx, Sidebar.jsx, Footer.jsx
+│       ├── FloatingChat.jsx, HamburgerMenu.jsx
+│       └── ...
+├── data/
+│   ├── miembros.js           # Datos completos del equipo (info, habilidades, pelis)
+│   └── famosos.js            # 25 personajes famosos con imágenes Wikipedia
+├── pages/                    # Vistas principales
+│   ├── Home.jsx              # Muro con posts, imágenes, comentarios
+│   ├── Login.jsx             # Login progresivo con credenciales pre-cargadas
+│   ├── Perfiles.jsx          # Perfiles de equipo + famosos + buscador
+│   ├── Mensajes.jsx          # Chat responsive (lista/thread mobile)
+│   ├── Bitacora.jsx          # Notas del proyecto (persistidas + documentación)
+│   ├── Eventos.jsx           # Evento TP2 con RSVP
+│   └── Noticias.jsx          # APIs: feriados, cotizaciones, clima
+├── App.jsx                   # Router principal
+└── styles/
+    └── main.css              # Único stylesheet (~1900 líneas)
+```
+
+---
 
 ## Guía de Estilos
 
 ### Paleta de Colores
-- Azul principal: #3b5998
-- Azul header: #4267b2
-- Gris fondo: #e9ebee
-- Gris bordes: #dddfe2
-- Texto principal: #1c1e21
-- Texto secundario: #606770
 
-### Tipografías
- Se utilizó la fuente **Roboto** de Google Fonts para mejorar la legibilidad y mantener una estética limpia y moderna.
+| Color | Hex |
+|-------|-----|
+| Azul principal | `#3b5998` |
+| Azul hover | `#4267b2` |
+| Fondo de página | `#e9ebee` |
+| Bordes de tarjetas | `#dddfe2` |
+| Texto principal | `#1c1e21` |
+| Texto secundario | `#606770` |
+| Blanco tarjetas | `#ffffff` |
+| Verde éxito | `#609846` |
 
-🔗 https://fonts.google.com/specimen/Roboto
+### Tipografía
+
+Fuente nativa del sistema (sin Google Fonts):
+```
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+```
 
 ### Iconografía
-- Emojis nativos
-- Avatares simulados para mantener privacidad de los integrantes (Uso de IA)
 
-## Interactividad con JavaScript
-Se han implementado las siguientes funciones para cumplir con los requerimientos mínimos:
+Emojis nativos — sin librerías externas.
 
-### Global (core.js)
-1.  **Simulación de Búsqueda**: Captura la tecla 'Enter' en la barra de búsqueda superior y muestra una alerta con la consulta.
-2.  **Placeholder Dinámico**: El texto de ayuda de la barra de búsqueda cambia cada 4 segundos entre diferentes sugerencias.
+---
 
-### Portada (interactions.js)
-3.  **Sistema de Like**: El botón "Me gusta" del post principal cambia de estado (texto y color) y actualiza el contador de likes dinámicamente.
-4.  **Actualización de Estado**: El botón "Publicar" valida si hay texto en el área de estado y muestra una confirmación.
+## JavaScript / React — Funcionalidades implementadas
 
-### Perfil (interactions.js)
-5.  **Solicitud de Amistad**: El botón "+ Añadir amigo" cambia a "✓ Solicitud enviada" y modifica su color al hacer clic.
-6.  **Efecto Hover en Habilidades**: Las etiquetas de habilidades cambian su color de fondo al pasar el puntero, mejorando la respuesta visual.
+### Muro interactivo (Home)
+- Posts con texto, imágenes (subidas por el usuario), emojis, comentarios en vivo
+- Toggle Like (Me gusta / Ya no me gusta) y Compartir (Compartir / Compartido)
+- Comentarios con Enter o botón, equipo comenta automáticamente en posts nuevos
+- Persistencia en localStorage
 
-### Bitácora (interactions.js)
-7.  **Simulación de Nueva Nota**: El botón "Escribir una nota" solicita un título mediante un prompt y confirma la acción.
+### Visor de fotos (PhotoViewer)
+- Modal carrusel con navegación ‹/›, teclado (← → Escape)
+- Integrado en perfiles (fotos del usuario) y en home (imágenes de posts)
 
-## Capturas del Proyecto
+### Mensajería (Mensajes + FloatingChat)
+- Conversaciones con auto-respuesta de emojis aleatorios tras 1-2s
+- Vista responsive mobile: lista de chats → al tocar uno, se abre el thread con botón ←
 
-Imágenes del proyecto en la carpeta `/design/` :
+### Perfiles dinámicos
+- Tabs funcionales: Muro, Información, Fotos, Más
+- 3 miembros del equipo con datos completos (películas, música, habilidades, amigos)
+- 25 personajes famosos con imágenes de Wikipedia, buscador por nombre + filtro por categoría
 
-- Portada  
-- Bitácora  
-- Perfil de usuario  
+### Login progresivo
+- Filas que aparecen una tras otra con delays crecientes (simula internet lento)
+- Campos pre-cargados con credenciales "visitante"
+- Responsive mobile: formulario se apila verticalmente
+
+### Noticias con APIs públicas
+- **Feriados 2026:** paginación client-side (5 por página)
+- **Cotizaciones:** USD, EUR, BRL con compra/venta
+- **Clima:** San Juan, Mendoza, San Luis, Buenos Aires (grid 2×2)
+- Estados loading (skeleton pulse), error (con Reintentar), Promise.all para fetch paralelo
+
+### Eventos
+- Página del TP2 con fecha límite (1 de julio de 2026)
+- RSVP: Asistiré / Tal vez / No asistiré con foto del equipo
+
+### Bitácora
+- Notas del proyecto persistidas en localStorage
+- Documentación estática: migración a React, roles del equipo, integración de APIs, animaciones
+
+### Buscador global
+- Busca en miembros + famosos en vivo desde el header
+- Dropdown con resultados cliqueables que navegan al perfil
+
+### Responsive
+- Breakpoints: 900px (grid 1 columna, hamburger visible), 600px (compacto), 400px (minimal)
+- Hamburger menu fullscreen estilo Facebook Java
+- Mensajes con vista stack mobile (lista/thread)
+
+### Animaciones vintage
+- Hover en tarjetas: sombra + translateY(-1px) — 150ms
+- Like: escala (like-pop) — 200ms
+- Mensajes nuevos: fade-up (msg-in) — 200ms
+- Tabs de perfil: fade-in — 200ms
+- Transición entre páginas: fade + translateY(8px) — 250ms
+- Sin easing moderno, sin rotaciones 3D, sin brillos
+
+---
+
+## Enlace al Proyecto Desplegado
+
+[https://caralibro-tp2.vercel.app/](https://caralibro-tp2.vercel.app/)
+
+---
+
+## Evolución del Proyecto
+
+### TP1 → TP2
+
+| Antes (HTML estático) | Ahora (SPA React) |
+|----------------------|-------------------|
+| Archivos HTML duplicados (index, bitacora, perfil) | Componentes reutilizables con Atomic Design |
+| CSS fragmentado (main.css + responsive.css) | Único stylesheet con variables y media queries |
+| JavaScript plano con funciones sueltas | Estado React con hooks, persistencia localStorage |
+| Sin routing — recarga completa en cada página | react-router-dom con navegación declarativa |
+| Sin APIs | Consumo de ArgentinaDatos + Open-Meteo con loading/error |
+
+### Capturas
+
+![](img/capturas/home-mockup.png)
+*Home — Muro de posts con imágenes, emojis y comentarios*
+
+![](img/capturas/main-mockup.png)
+*Vista general del sitio en escritorio*
+
+![](img/capturas/mobile.png)
+*Vista responsive mobile — menú hamburguesa y layout adaptativo*
+
+---
 
 ## Uso de Inteligencia Artificial
 
-### Herramientas utilizadas
-- ChatGPT (asistencia en código y redacción)
+### Modelos utilizados
 
+- *(completar con los modelos usados, ej: ChatGPT-4, Gemini, GitHub Copilot)*
 
 ### Uso en contenido y código
-La IA fue utilizada como herramienta de apoyo para:
-- Generar textos para Bitácora del proyecto
-- Asistir en la implementación de funcionalidades en JavaScript
 
-### Imágenes
-Los avatares fueron generados utilizando la herramienta Nano Banana a partir de fotografías reales. 
-Se aplicaron prompts orientados a transformar las imágenes en representaciones tipo avatar, adecuadas para perfiles web, priorizando una estética uniforme y el resguardo de la identidad de los integrantes.
-
-
+- **Textos generados:** Documentación de la bitácora (justificación de migración, roles del equipo, integración de APIs, animaciones), descripciones de personajes famosos, contenido de posts semilla
+- **Código:** Asistencia en debugging de componentes (PostCard, FloatingChat, auto-merge de estados), generación de estructura de datos (famosos, miembros), implementación de animaciones CSS vintage, responsive design con media queries, resolución de conflictos de merge en Git
+- **Debugging:** Identificación de errores de estado en componentes, problemas de re-renderizado, conflictos entre localStorage y estado inicial
 
 ---
-**Curso:** Frontend - TP1  
-**Equipo:** Grupo 4 
 
-## Enlace al proyecto desplegado - Vercel
+## Cómo correr el proyecto localmente
 
-https://caralibro-tp1.vercel.app/
+```bash
+npm install
+npm run dev
+```
 
+---
+
+**Curso:** Frontend — TP2  
+**Comisión:** 2° E  
+**Equipo:** Grupo 4
