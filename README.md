@@ -1,6 +1,6 @@
 # Caralibro TP2 — Facebook 2010 Clone
 
-![Logo](public/img/logo.png)
+![Main Mockup](public/img/capturas/main-mockup.png)
 
 **Deploy:** https://caralibro-tp2.vercel.app/
 
@@ -189,10 +189,10 @@ Emojis nativos — sin librerías externas.
 ### Capturas
 
 ![Home Mockup](public/img/capturas/home-mockup.png)
-*Home — Muro de posts con imágenes, emojis y comentarios*
+*Home — Vista de Login*
 
 ![Main Mockup](public/img/capturas/main-mockup.png)
-*Vista general del sitio en escritorio*
+*Muro de posts con imágenes, emojis y comentarios*
 
 ![Mobile](public/img/capturas/mobile.png)
 *Vista responsive mobile — menú hamburguesa y layout adaptativo*
