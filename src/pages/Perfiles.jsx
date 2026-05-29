@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Layout from '../components/Layout'
 import MemberList from '../components/MemberList'
@@ -22,6 +22,65 @@ function Perfiles() {
   const [searchTerm, setSearchTerm] = useState('')
   const [filtroCategoria, setFiltroCategoria] = useState('')
   const [, forceUpdate] = useState(0)
+
+  const STORAGE_KEY = `perfil-posts-${slug}`
+
+  const defaultPosts = user ? [
+  {
+    id: 1,
+    author: user.nombre,
+    avatarSrc: user.imagen,
+    profileLink: `/perfiles/${user.slug}`,
+    timestamp: '25 de mayo de 2026',
+    visibility: 'Público',
+    content:
+      user.perfilCompleto?.bio ||
+      `${user.nombre.split(' ')[0]} está trabajando en Caralibro.`,
+    comments: [],
+  },
+  {
+    id: 2,
+    author: user.nombre,
+    avatarSrc: user.imagen,
+    profileLink: `/perfiles/${user.slug}`,
+    timestamp: '20 de mayo de 2026',
+    visibility: 'Público',
+    content: `🎵 Escuchando ${
+      user.perfilCompleto?.musica?.[0] || 'música'
+    } todo el día`,
+    comments: [],
+  },
+] : []
+
+  const [posts, setPosts] = useState(() => {
+  const saved = localStorage.getItem(STORAGE_KEY)
+
+  if (saved) {
+    return JSON.parse(saved)
+  }
+  return defaultPosts
+})
+
+useEffect(() => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
+}, [posts, STORAGE_KEY])
+
+const handleComment = (postId, text) => {setPosts(prev => prev.map(p => {
+      if (p.id !== postId) return p
+      return {
+        ...p,
+        comments: [
+          ...(p.comments || []),
+          {
+            name: 'Visitante',
+            avatarSrc: '/img/default.png',
+            text,
+          },
+        ],
+      }
+    })
+  )
+}
 
   const [fotoActual, setFotoActual] = useState(null);
   const fotos = user ? [
@@ -178,28 +237,15 @@ function Perfiles() {
 
               {activeTab === 'Muro' && (
                 <>
+                 {posts.map(post => (
                   <PostCard
-                    post={{
-                      author: user.nombre,
-                      avatarSrc: user.imagen,
-                      profileLink: `/perfiles/${user.slug}`,
-                      timestamp: '25 de mayo de 2026',
-                      visibility: 'Público',
-                      content: user.perfilCompleto?.bio || `${user.nombre.split(' ')[0]} está trabajando en Caralibro.`,
-                    }}
+                   key={post.id}
+                   post={post}
+                   onComment={handleComment}
                   />
-                  <PostCard
-                    post={{
-                      author: user.nombre,
-                      avatarSrc: user.imagen,
-                      profileLink: `/perfiles/${user.slug}`,
-                      timestamp: '20 de mayo de 2026',
-                      visibility: 'Público',
-                      content: `🎵 Escuchando ${user.perfilCompleto?.musica?.[0] || 'música'} todo el día`,
-                    }}
-                  />
-                </>
-              )}
+                ))}
+              </>
+            )}
 
               {activeTab === 'Información' && (
                 <>
