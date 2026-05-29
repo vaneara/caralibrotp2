@@ -6,6 +6,25 @@
 
 ---
 
+## Consigna del TP2
+
+Desarrollar una **Single Page Application (SPA)** con React + Vite que replique la interfaz de Facebook 2010, aplicando los siguientes conceptos:
+
+- **Componentización con Atomic Design:** separar la UI en átomos, moléculas y organismos reutilizables
+- **Consumo de APIs públicas:** integración de al menos dos APIs con manejo de estados loading, error y datos
+- **Persistencia de datos:** uso de localStorage para posts y notas
+- **Interactividad:** likes, comentarios, chat con auto-respuesta, RSVP en eventos
+- **Responsive Design:** adaptación a mobile con hamburger menu y layout flexible
+- **Estética retro:** animaciones sutiles (<200ms), paleta Facebook 2010, tipografía de sistema
+
+### Árbol de Renderizado
+
+El siguiente diagrama muestra la jerarquía de componentes del proyecto, organizados por su clasificación en Atomic Design:
+
+![Árbol de Renderizado](public/img/capturas/arbol-renderizado.png)
+
+---
+
 ## Descripción
 
 SPA desarrollada con React + Vite que recrea la experiencia visual e interactiva de Facebook circa 2010. Incluye muro de posts con imágenes y emojis, mensajería con auto-respuesta, perfiles de equipo y personajes famosos, bitácora de desarrollo persistida en localStorage, eventos con RSVP, y una página de noticias que consume APIs públicas (feriados, cotizaciones, clima). Diseño responsive con estética retro auténtica (bordes cuadrados, azules #3b5998, tipografía sistema, transiciones de 150-200ms).

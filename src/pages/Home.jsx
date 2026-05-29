@@ -67,6 +67,42 @@ function getRelativeTime(createdAt) {
 
 const seedPosts = [
   {
+    id: -1,
+    author: 'Desarrollo Cuyo - Grupo 4',
+    avatarInitials: 'GC',
+    createdAt: Date.now() - 100000,
+    visibility: 'Público',
+    content: `✨ ¡Todo es interactivo! ✨
+
+Nos aseguramos de que el sitio esté (o parezca) vivo, como si fuera una cápsula del tiempo donde Facebook se ve igual que en 2010.
+
+Cada pequeño botón o link es interactivo, así que da rienda suelta a tu curiosidad para recorrer el sitio. Probá comentar, dar like, compartir, chatear, buscar personas, o explorar las noticias con datos reales.
+
+👉 Iniciá sesión con las credenciales de "Visitante" para empezar`,
+    feedback: 'Tomi M., Vane Ara y Fer. Rodriguez',
+    image: '/img/clickable.jpg',
+    comments: [
+      {
+        avatarSrc: avatarvane,
+        name: 'Vane Ara',
+        profileLink: '/perfiles/vane-ara',
+        text: 'Todo esto con React + Atomic Design! Está buenísimo 😍',
+      },
+      {
+        avatarSrc: tomi,
+        name: 'Tomi M.',
+        profileLink: '/perfiles/tomi-m',
+        text: 'Hasta el último botón es cliqueable. Dale like a algo! 👍',
+      },
+      {
+        avatarSrc: avatarfer,
+        name: 'Fernando Rodriguez',
+        profileLink: '/perfiles/fernando-rodriguez',
+        text: 'Y las APIs funcionan de verdad — feriados, cotizaciones y clima en vivo 📡',
+      },
+    ],
+  },
+  {
     id: 0,
     author: 'Desarrollo Cuyo - Grupo 4',
     avatarInitials: 'AP',
@@ -171,8 +207,15 @@ function Home() {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         const parsed = JSON.parse(saved)
-        const hasSeed = parsed.some(p => p.id >= 1 && p.id <= 4)
-        if (hasSeed) return parsed
+        const hasSeed = parsed.some(p => p.id === -1)
+        if (hasSeed) {
+          const fresh = seedPosts.find(s => s.id === -1)
+          if (fresh) {
+            const idx = parsed.findIndex(p => p.id === -1)
+            if (idx !== -1) parsed[idx] = { ...fresh, comments: parsed[idx].comments || fresh.comments }
+          }
+          return parsed
+        }
         const existingIds = new Set(parsed.map(p => p.id))
         const missing = seedPosts.filter(p => !existingIds.has(p.id))
         return [...missing, ...parsed]
