@@ -25,10 +25,11 @@ export const miembros = [
       },
 
       habilidades: [
-        "Frontend Development",
-        "HTML & CSS",
-        "Cerámica",
-        "Modelado de piezas"
+       { nombre: 'HTML  ', nivel: 75 },
+       { nombre: 'CSS  ', nivel: 80 },
+       { nombre: 'JavaScript  ', nivel: 70 },
+       { nombre: 'React  ', nivel: 80 },
+       { nombre: 'Git  ', nivel: 80 },
       ],
 
       peliculas: [
