@@ -136,6 +136,8 @@ Emojis nativos — sin librerías externas.
 - Comentarios con Enter o botón, equipo comenta automáticamente en posts nuevos
 - Persistencia en localStorage
 
+![Post interactivo](public/img/clickable.jpg)
+
 ### Visor de fotos (PhotoViewer)
 - Modal carrusel con navegación ‹/›, teclado (← → Escape)
 - Integrado en perfiles (fotos del usuario) y en home (imágenes de posts)
