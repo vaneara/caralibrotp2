@@ -232,6 +232,10 @@ Emojis nativos — sin librerías externas.
 - **Código:** Asistencia en debugging de componentes (PostCard, FloatingChat, auto-merge de estados), generación de estructura de datos (famosos, miembros), implementación de animaciones CSS vintage, responsive design con media queries, resolución de conflictos de merge en Git
 - **Debugging:** Identificación de errores de estado en componentes, problemas de re-renderizado, conflictos entre localStorage y estado inicial
 
+### Imágenes generadas con IA
+
+- Algunos avatares e imágenes de perfil fueron generados utilizando herramientas de IA generativa.
+
 ---
 
 ## Cómo correr el proyecto localmente

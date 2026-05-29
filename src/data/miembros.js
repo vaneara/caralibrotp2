@@ -51,11 +51,11 @@ export const miembros = [
       ],
 
       musica: [
+        "Silvestre y la Naranja",
         "Dread Mar I",
         "No Te Va Gustar",
         "IKV",
         "El Plan de la Mariposa",
-        "Silvestre y la Naranja"
       ],
 
       amigos: 325,
