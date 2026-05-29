@@ -12,6 +12,7 @@ import PhotoViewer from '../components/PhotoViewer'
 
 import { miembros } from '../data/miembros'
 import { famosos } from '../data/famosos'
+import { proyectos } from '../data/proyectos'
 
 function Perfiles() {
   const { slug } = useParams()
@@ -20,11 +21,13 @@ function Perfiles() {
   const [activeTab, setActiveTab] = useState('Muro')
   const [searchTerm, setSearchTerm] = useState('')
   const [filtroCategoria, setFiltroCategoria] = useState('')
+  const [, forceUpdate] = useState(0)
 
   const [fotoActual, setFotoActual] = useState(null);
   const fotos = user ? [
     {img: user.imagen, titulo: 'Foto de perfil'},
-    ...(user.perfilCompleto?.peliculas || []).map(p => ({img: p.img, titulo: p.titulo}))
+    ...(user.perfilCompleto?.peliculas || []).map(p => ({img: p.img, titulo: p.titulo})),
+    ...proyectos
   ] : [];
 
   const categorias = useMemo(() => [...new Set(famosos.map(f => f.categoria))], [])
@@ -208,11 +211,28 @@ function Perfiles() {
                   </InfoBox>
 
                   <InfoBox title="Habilidades">
-                    {user.perfilCompleto?.habilidades?.map((h, i) => (
-                      <div key={i}>• {h}</div>
-                    ))}
-                  </InfoBox>
+                  {user.perfilCompleto?.habilidades?.map((h, i) => (
+                  <div key={i} className="skill-item">
 
+                  <div className="skill-header">
+                    <span>{h.nombre}</span>
+                    <span>{h.nivel}%</span>
+                  </div>
+
+                  <div className="skill-bar" onClick={(e) => {
+               const rect = e.currentTarget.getBoundingClientRect()
+               const porcentaje = ((e.clientX - rect.left) / rect.width) * 100
+                 h.nivel = Math.round(porcentaje)
+                 forceUpdate(n => n + 1)
+              }}
+              >
+             <div className="skill-progress" style={{ width: `${h.nivel}%` }}
+             />
+              </div>
+              </div>
+                ))}
+                 </InfoBox>
+ 
                   <InfoBox title="Películas favoritas">
                     {user.perfilCompleto?.peliculas?.map((p, i) => (
                       <MovieItem key={i} image={p.img} title={p.titulo} genre={p.genero} />
@@ -249,9 +269,22 @@ function Perfiles() {
                         <span>{p.titulo.split('(')[0].trim()}</span>
                       </div>
                     ))}
+
+                    {proyectos.map((p, i) => (
+                      <div key={`proyecto-${i}`} className="profile-photo-item"
+                      onClick={() =>   setFotoActual(
+                     (user.perfilCompleto?.peliculas?.length || 0) + i + 1
+                     )
+                    }
+                   >
+                   <img src={p.img} alt={p.titulo} />
+                   <span>{p.titulo}</span>
+                   </div>
+                   ))}
                   </div>
                 </div>
               )}
+
               {fotoActual !== null && (
                 <PhotoViewer
                   photos={fotos}
