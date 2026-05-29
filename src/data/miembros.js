@@ -25,10 +25,11 @@ export const miembros = [
       },
 
       habilidades: [
-        "Frontend Development",
-        "HTML & CSS",
-        "Cerámica",
-        "Modelado de piezas"
+        { nombre: 'HTML  ', nivel: 75 },
+        { nombre: 'CSS  ', nivel: 80 },
+        { nombre: 'JavaScript  ', nivel: 70 },
+        { nombre: 'React  ', nivel: 80 },
+        { nombre: 'Git  ', nivel: 80 },
       ],
 
       peliculas: [
@@ -53,13 +54,14 @@ export const miembros = [
         "Dread Mar I",
         "No Te Va Gustar",
         "IKV",
-        "El Plan de la Mariposa"
+        "El Plan de la Mariposa",
+        "Silvestre y la Naranja"
       ],
 
       amigos: 325,
       extra: {
         frase: "La creatividad es la inteligencia divirtiéndose",
-        intereses: ["Cerámica artesanal", "Jardinería", "Fotografía analógica", "Cocina vegana"],
+        intereses: ["Cerámica artesanal", "Naturaleza", "Fotografía", "Cocina saludable"],
         cita: "No hay arte sin corazón"
       }
     }
@@ -78,14 +80,15 @@ export const miembros = [
         relacion: "Soltero",
         cumpleaños: "29 de Enero"
       },
+
       habilidades: [
-        "Frontend Development",
-        "HTML & CSS",
-        "UX/UI",
-        "Javascript",
-        "React",
-        "Astro"
+        { nombre: 'HTML  ', nivel: 95 },
+        { nombre: 'CSS  ', nivel: 85 },
+        { nombre: 'JavaScript  ', nivel: 90 },
+        { nombre: 'React  ', nivel: 90 },
+        { nombre: 'Git  ', nivel: 75 },
       ],
+
 
       peliculas: [
         {
@@ -134,7 +137,15 @@ export const miembros = [
         ciudad: "Mendoza, Argentina",
         edad: 40
       },
-      habilidades: ["Backend Development", "Node.js", "Java", "SQL", "APIs REST"],
+
+      habilidades: [
+        { nombre: 'HTML  ', nivel: 75 },
+        { nombre: 'CSS  ', nivel: 80 },
+        { nombre: 'JavaScript  ', nivel: 70 },
+        { nombre: 'React  ', nivel: 80 },
+        { nombre: 'Git  ', nivel: 80 },
+      ],
+
       peliculas: [],
       musica: ["AC/DC", "Linkin Park", "Limp Bizkit"],
       amigos: 87,

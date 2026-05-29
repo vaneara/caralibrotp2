@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import NoteCard from '../components/NoteCard'
 import Button from '../components/Button'
+import PhotoViewer from '../components/PhotoViewer'
 
 const STORAGE_KEY = 'caralibro_notas'
 
@@ -9,6 +10,7 @@ function Bitacora() {
   const [showForm, setShowForm] = useState(false)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [viewerImage, setViewerImage] = useState(null)
   const [notas, setNotas] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
@@ -92,6 +94,109 @@ function Bitacora() {
             </p>
           </NoteCard>
         ))}
+
+        <NoteCard
+          note={{
+            title: 'Animaciones: el sabor de la web de 2010',
+            date: '28 de mayo de 2026 a las 6:00 PM · 🌎',
+          }}
+        >
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            Facebook 2010 no tenía micro-interacciones rebotadas ni curvas de easing sofisticadas. Cuando pasabas el mouse por una tarjeta, apenas se oscurecía un toque. Cuando le daban like a algo, el texto cambiaba de color sin animación. Era simple, directo, y eso era justamente lo que lo hacía sentir auténtico.
+          </p>
+
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            Para Caralibro buscamos rescatar esa esencia — no se trataba de hacer animaciones llamativas, sino de lograr que la interfaz se sintiera <em>viva</em> sin romper la ilusión de estar en 2010. Cada transición es de 150 a 200 milisegundos, sin easing moderno (nada de cubic-bezier rebotado), apenas un cambio sutil que el ojo registra sin distraer.
+          </p>
+
+          <h3 style={{ fontSize: '15px', marginBottom: '10px' }}>Qué animamos y por qué</h3>
+
+          <ul style={{ marginLeft: '20px', marginBottom: '15px' }}>
+            <li><strong>Tarjetas al hover:</strong> una sombra suave y un desplazamiento de 1px hacia arriba. Suficiente para indicar "esto es cliqueable", sin llamar la atención.</li>
+            <li><strong>Like (Me gusta):</strong> un pequeño rebote de escala de 200ms que solo se ve cuando está likeado. Es la única animación con un mínimo de carácter — porque el like era el gesto más importante de la plataforma.</li>
+            <li><strong>Mensajes entrantes:</strong> aparecen con un fade-up de 200ms. La idea era simular que el mensaje "llega" en vez de simplemente aparecer.</li>
+            <li><strong>Transiciones entre pestañas de perfil:</strong> fade-in de 200ms para que el cambio de contenido no sea abrupto, pero tampoco lento.</li>
+            <li><strong>Navegación entre páginas:</strong> un fade + translateY de 8px de 250ms. Es lo único que cruza el umbral de los 200ms, porque el cambio de página entera merecía un respiro visual.</li>
+            <li><strong>Login progresivo:</strong> filas que aparecen una tras otra con delays crecientes, simulando la carga lenta del internet de la época. No es una animación funcional — es puramente atmosférica.</li>
+          </ul>
+
+          <h3 style={{ fontSize: '15px', marginBottom: '10px' }}>Lo que evitamos a propósito</h3>
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            Sin transiciones CSS tipo "slide" con rebote, sin rotaciones 3D, sin escalas gigantes al hover. Nada de sombras de neón ni brillos. Cada animación está pensada para pasar desapercibida — si alguien nota la animación, fallamos en nuestro objetivo.
+          </p>
+
+          <blockquote
+            style={{
+              borderLeft: '4px solid #dddfe2',
+              paddingLeft: '15px',
+              fontStyle: 'italic',
+              color: '#606770',
+              marginBottom: '15px',
+              fontSize: '14px',
+            }}
+          >
+            "La mejor animación es la que no se nota. La segunda mejor es la que dura menos de 200ms."
+          </blockquote>
+        </NoteCard>
+
+        <NoteCard
+          note={{
+            title: 'Arquitectura de Componentes con Atomic Design',
+            date: '28 de mayo de 2026 a las 8:00 PM · 🌎',
+          }}
+        >
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            Para organizar los ~30 componentes del proyecto adoptamos <strong>Atomic Design</strong>, una metodología que clasifica los componentes en niveles según su complejidad. Esto nos permitió mantener el código predecible, reutilizable y fácil de escalar.
+          </p>
+
+          <h3 style={{ fontSize: '15px', marginBottom: '10px' }}>La jerarquía que armamos</h3>
+
+          <ul style={{ marginLeft: '20px', marginBottom: '15px' }}>
+            <li><strong>Átomos (6):</strong> <em>Avatar</em>, <em>Button</em>, <em>Input</em>, <em>Badge</em>, <em>Timestamp</em>, <em>Icon</em> — los bloques más chicos, sin lógica propia, reusables en cualquier lado.</li>
+            <li><strong>Moléculas (12):</strong> <em>SearchBar</em>, <em>MessageBubble</em>, <em>ChatInput</em>, <em>PostActions</em>, <em>CommentBubble</em>, <em>ConversationItem</em>, <em>FriendListItem</em>, <em>SidebarWidget</em>, <em>InputField</em>, <em>EmojiPicker</em>, <em>PhotoViewer</em>, <em>PostFeedback</em> — combinaciones de átomos con una función específica.</li>
+            <li><strong>Organismos (9):</strong> <em>PostCard</em>, <em>StatusBox</em>, <em>NoteCard</em>, <em>ConversationList</em>, <em>MessageThread</em>, <em>ProfileHeader</em>, <em>ProfileMenu</em>, <em>Header</em>, <em>Sidebar</em> — secciones complejas que combinan moléculas y átomos.</li>
+            <li><strong>Páginas (7):</strong> <em>Login</em>, <em>Home</em>, <em>Perfiles</em>, <em>Mensajes</em>, <em>Bitacora</em>, <em>Eventos</em>, <em>Noticias</em> — cada una dentro de <em>Layout</em> que provee Header + Sidebar + Footer + FloatingChat.</li>
+          </ul>
+
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            El siguiente diagrama muestra cómo se relacionan los componentes en el árbol de renderizado. Cada nodo está coloreado según su nivel atómico:
+          </p>
+
+          <img
+            src="img/capturas/arbol-renderizado.png"
+            alt="Árbol de renderizado del proyecto"
+            onClick={() => setViewerImage('img/capturas/arbol-renderizado.png')}
+            style={{
+              width: '100%',
+              border: '1px solid #dddfe2',
+              borderRadius: '2px',
+              marginBottom: '15px',
+              cursor: 'pointer',
+            }}
+          />
+
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            <strong>Verde</strong> = átomos · <strong>Azul</strong> = moléculas · <strong>Naranja</strong> = organismos · <strong>Rosa</strong> = páginas
+          </p>
+
+          <h3 style={{ fontSize: '15px', marginBottom: '10px' }}>Por qué funcionó</h3>
+          <p style={{ marginBottom: '15px', fontSize: '14px' }}>
+            Atomic Design nos obligó a pensar en cada pieza de UI como un componente independiente. Cuando necesitábamos un avatar en el chat, en los comentarios y en la sidebar, ya existía el átomo <em>Avatar</em> con 6 tamaños. Cuando el visor de fotos apareció en perfiles y después en home, fue cuestión de mover el componente <em>PhotoViewer</em> de un lado al otro sin reescribir nada.
+          </p>
+
+          <blockquote
+            style={{
+              borderLeft: '4px solid #dddfe2',
+              paddingLeft: '15px',
+              fontStyle: 'italic',
+              color: '#606770',
+              marginBottom: '15px',
+              fontSize: '14px',
+            }}
+          >
+            "La diferencia entre un proyecto con componentes y uno con Atomic Design es que el segundo ya tiene resuelto dónde va cada cosa antes de escribirla."
+          </blockquote>
+        </NoteCard>
 
         <NoteCard
           note={{
@@ -323,6 +428,14 @@ function Bitacora() {
           <a href="#" style={{ fontWeight: 'bold' }}>Ver más notas</a>
         </div>
       </main>
+
+      {viewerImage && (
+        <PhotoViewer
+          photos={[{ img: viewerImage, titulo: 'Árbol de Renderizado' }]}
+          initialIndex={0}
+          onClose={() => setViewerImage(null)}
+        />
+      )}
     </Layout>
   )
 }

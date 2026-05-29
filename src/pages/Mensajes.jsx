@@ -67,34 +67,41 @@ const conversations = [
 function Mensajes() {
   const [activeConv, setActiveConv] = useState(conversations[0])
   const [search, setSearch] = useState('')
+  const [mobileView, setMobileView] = useState('list')
+
+  const handleSelect = (conv) => {
+    setActiveConv(conv)
+    setMobileView('thread')
+  }
 
   return (
     <Layout>
-      <div className="card messages-panel" style={{ height: 'calc(100vh - 180px)' }}>
+      <div className={`card messages-panel ${mobileView === 'thread' ? 'msg-show-thread' : ''}`} style={{ height: 'calc(100vh - 180px)' }}>
         <ConversationList
           conversations={conversations}
           activeId={activeConv.id}
-          onSelect={setActiveConv}
+          onSelect={handleSelect}
           search={search}
           onSearchChange={e => setSearch(e.target.value)}
         />
 
         <MessageThread
           activeConversation={activeConv}
+          onBack={() => setMobileView('list')}
           onSendMessage={(text) => {
-            const emoji = emojis[Math.floor(Math.random() * emojis.length)]
-            setActiveConv(prev => ({
-              ...prev,
-              messages: [...prev.messages, { from: 'me', text, time: 'Ahora' }],
-            }))
-            setTimeout(() => {
+              const emoji = emojis[Math.floor(Math.random() * emojis.length)]
               setActiveConv(prev => ({
                 ...prev,
-                messages: [...prev.messages, { from: 'them', text: emoji, time: 'Ahora' }],
+                messages: [...prev.messages, { from: 'me', text, time: 'Ahora' }],
               }))
-            }, 1000 + Math.random() * 2000)
-          }}
-        />
+              setTimeout(() => {
+                setActiveConv(prev => ({
+                  ...prev,
+                  messages: [...prev.messages, { from: 'them', text: emoji, time: 'Ahora' }],
+                }))
+              }, 1000 + Math.random() * 2000)
+            }}
+          />
       </div>
     </Layout>
   )
