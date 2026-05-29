@@ -80,14 +80,15 @@ export const miembros = [
         relacion: "Soltero",
         cumpleaños: "29 de Enero"
       },
+
       habilidades: [
-        "Frontend Development",
-        "HTML & CSS",
-        "UX/UI",
-        "Javascript",
-        "React",
-        "Astro"
+       { nombre: 'HTML  ', nivel: 75 },
+       { nombre: 'CSS  ', nivel: 80 },
+       { nombre: 'JavaScript  ', nivel: 70 },
+       { nombre: 'React  ', nivel: 80 },
+       { nombre: 'Git  ', nivel: 80 },
       ],
+
 
       peliculas: [
         {
@@ -136,7 +137,15 @@ export const miembros = [
         ciudad: "Capital Federal, Argentina",
         edad: 31
       },
-      habilidades: ["Backend Development", "Node.js", "Java", "SQL", "APIs REST"],
+
+      habilidades: [
+       { nombre: 'HTML  ', nivel: 75 },
+       { nombre: 'CSS  ', nivel: 80 },
+       { nombre: 'JavaScript  ', nivel: 70 },
+       { nombre: 'React  ', nivel: 80 },
+       { nombre: 'Git  ', nivel: 80 },
+      ],
+
       peliculas: [],
       musica: ["Queen", "Pink Floyd", "Red Hot Chili Peppers"],
       amigos: 87,
