@@ -10,7 +10,7 @@ import ferAvatar from "../assets/img/fer_avatar.jpg";
 
 export const miembros = [
   {
-    nombre: "Vane Aracena",
+    nombre: "Vane Ara",
     rol: "Developer",
     slug: "vane-ara",
     imagen: avatarvane,

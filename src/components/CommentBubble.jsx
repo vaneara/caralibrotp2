@@ -1,4 +1,5 @@
 import Avatar from './Avatar'
+import { Link } from 'react-router-dom'
 
 function CommentBubble({ avatarSrc, avatarInitials, name, profileLink, text, timestamp }) {
   return (
@@ -21,19 +22,33 @@ function CommentBubble({ avatarSrc, avatarInitials, name, profileLink, text, tim
           width: '100%',
         }}
       >
-        <a
-          href={profileLink}
+        {profileLink ? (
+        <Link
+         to={profileLink}
+         style={{
+           fontWeight: 'bold',
+           fontSize: '11px',
+           textDecoration: 'none',
+           color: '#3b5998',
+           display: 'block',
+           marginBottom: '2px',
+         }}
+         >
+         {name}
+       </Link>
+        ) : (
+       <span
           style={{
             fontWeight: 'bold',
             fontSize: '11px',
-            textDecoration: 'none',
             color: '#3b5998',
             display: 'block',
             marginBottom: '2px',
           }}
-        >
-          {name}
-        </a>
+       >
+        {name}
+        </span>
+     )}
 
         <p style={{ margin: 0, fontSize: '13px', whiteSpace: 'pre-wrap' }}>{text}</p>
       </div>
