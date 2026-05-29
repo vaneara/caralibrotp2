@@ -224,7 +224,7 @@ Emojis nativos — sin librerías externas.
 
 ### Modelos utilizados
 
-- *(completar con los modelos usados, ej: ChatGPT-4, Gemini, GitHub Copilot)*
+- *OpenCode Big Pickle, Claude Sonnet 4.6, ChatGPT-4.0 (Gepetto para los amigos)*
 
 ### Uso en contenido y código
 

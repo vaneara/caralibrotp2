@@ -25,11 +25,11 @@ export const miembros = [
       },
 
       habilidades: [
-       { nombre: 'HTML  ', nivel: 75 },
-       { nombre: 'CSS  ', nivel: 80 },
-       { nombre: 'JavaScript  ', nivel: 70 },
-       { nombre: 'React  ', nivel: 80 },
-       { nombre: 'Git  ', nivel: 80 },
+        { nombre: 'HTML  ', nivel: 75 },
+        { nombre: 'CSS  ', nivel: 80 },
+        { nombre: 'JavaScript  ', nivel: 70 },
+        { nombre: 'React  ', nivel: 80 },
+        { nombre: 'Git  ', nivel: 80 },
       ],
 
       peliculas: [
@@ -82,11 +82,11 @@ export const miembros = [
       },
 
       habilidades: [
-       { nombre: 'HTML  ', nivel: 75 },
-       { nombre: 'CSS  ', nivel: 80 },
-       { nombre: 'JavaScript  ', nivel: 70 },
-       { nombre: 'React  ', nivel: 80 },
-       { nombre: 'Git  ', nivel: 80 },
+        { nombre: 'HTML  ', nivel: 95 },
+        { nombre: 'CSS  ', nivel: 85 },
+        { nombre: 'JavaScript  ', nivel: 90 },
+        { nombre: 'React  ', nivel: 90 },
+        { nombre: 'Git  ', nivel: 75 },
       ],
 
 
@@ -139,11 +139,11 @@ export const miembros = [
       },
 
       habilidades: [
-       { nombre: 'HTML  ', nivel: 75 },
-       { nombre: 'CSS  ', nivel: 80 },
-       { nombre: 'JavaScript  ', nivel: 70 },
-       { nombre: 'React  ', nivel: 80 },
-       { nombre: 'Git  ', nivel: 80 },
+        { nombre: 'HTML  ', nivel: 75 },
+        { nombre: 'CSS  ', nivel: 80 },
+        { nombre: 'JavaScript  ', nivel: 70 },
+        { nombre: 'React  ', nivel: 80 },
+        { nombre: 'Git  ', nivel: 80 },
       ],
 
       peliculas: [],
