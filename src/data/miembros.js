@@ -130,18 +130,18 @@ export const miembros = [
       bio: "Backend & APIs",
       info: {
         relacion: "Casado",
-        cumpleaños: "3 de Julio",
-        ciudad: "Capital Federal, Argentina",
-        edad: 31
+        cumpleaños: "9 de Diciembre",
+        ciudad: "Mendoza, Argentina",
+        edad: 40
       },
       habilidades: ["Backend Development", "Node.js", "Java", "SQL", "APIs REST"],
       peliculas: [],
-      musica: ["Queen", "Pink Floyd", "Red Hot Chili Peppers"],
+      musica: ["AC/DC", "Linkin Park", "Limp Bizkit"],
       amigos: 87,
       extra: {
-        frase: "Backend es donde ocurre la magia real",
-        intereses: ["Asado", "Fútbol", "Series", "Videojuegos"],
-        cita: "It works on my machine"
+        frase: "Bienaventurados los de limpio corazón, porque ellos verán a Dios.",
+        intereses: ["Leer", "Fútbol", "Computadoras", "Series", "Peliculas"],
+        cita: "70 veces 7"
       }
     }
   }
