@@ -2,7 +2,7 @@
 
 ![Main Mockup](public/img/capturas/main-mockup.png)
 
-**Deploy:** https://caralibro-tp2.vercel.app/
+**Deploy:** https://caralibrotp2.vercel.app/
 
 ---
 
@@ -191,7 +191,7 @@ Emojis nativos — sin librerías externas.
 
 ## Enlace al Proyecto Desplegado
 
-[https://caralibro-tp2.vercel.app/](https://caralibro-tp2.vercel.app/)
+[https://caralibrotp2.vercel.app/](https://caralibrotp2.vercel.app/)
 
 ---
 
