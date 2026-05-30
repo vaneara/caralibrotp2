@@ -52,20 +52,25 @@ function Perfiles() {
   },
 ] : []
 
-  const [posts, setPosts] = useState(() => {
-  const saved = localStorage.getItem(STORAGE_KEY)
-
-  if (saved) {
-    return JSON.parse(saved)
-  }
-  return defaultPosts
-})
+ const [posts, setPosts] = useState(defaultPosts)
 
 useEffect(() => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
 }, [posts, STORAGE_KEY])
 
-const handleComment = (postId, text) => {setPosts(prev => prev.map(p => {
+useEffect(() => {
+  const saved = localStorage.getItem(STORAGE_KEY)
+
+  if (saved) {
+    setPosts(JSON.parse(saved))
+  } else {
+    setPosts(defaultPosts)
+  }
+}, [slug])
+
+const handleComment = (postId, text) => {
+      setPosts(prev => 
+        prev.map(p => {
       if (p.id !== postId) return p
       return {
         ...p,
