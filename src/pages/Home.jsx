@@ -199,6 +199,38 @@ Nuestro propósito es compartir sobre la evolución de las interfaces digitales 
       },
     ],
   },
+  {
+    id: -2,
+    author: 'Desarrollo Cuyo - Grupo 4',
+    avatarInitials: 'DC',
+    createdAt: Date.now() - 60000,
+    visibility: 'Público',
+    content: `🎬 Presentación - Caralibro TP2 🎬
+
+Les compartimos las diapositivas de nuestra presentación final. Recorranlas con el visor de imágenes! Despedimos la materia de Frontend con una buena presentación! :)`,
+    images: [
+      '/img/Caralibro_Presentacion-1.png',
+      '/img/Caralibro_Presentacion-2.png',
+      '/img/Caralibro_Presentacion-3.png',
+      '/img/Caralibro_Presentacion-4.png',
+      '/img/Caralibro_Presentacion-5.png',
+    ],
+    feedback: 'Tomi M., Vane Ara y Fer. Rodriguez',
+    comments: [
+      {
+        avatarSrc: tomi,
+        name: 'Tomi M.',
+        profileLink: '/perfiles/tomi-m',
+        text: 'Dale click a las imágenes para verlas en grande con las flechas del teclado! ▶️',
+      },
+      {
+        avatarSrc: avatarvane,
+        name: 'Vane Ara',
+        profileLink: '/perfiles/vane-ara',
+        text: 'Qué lindo quedó todo! 🥹✨',
+      },
+    ],
+  },
 ]
 
 function Home() {
@@ -207,14 +239,10 @@ function Home() {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         const parsed = JSON.parse(saved)
-        const hasSeed = parsed.some(p => p.id === -1)
-        if (hasSeed) {
-          const fresh = seedPosts.find(s => s.id === -1)
-          if (fresh) {
-            const idx = parsed.findIndex(p => p.id === -1)
-            if (idx !== -1) parsed[idx] = { ...fresh, comments: parsed[idx].comments || fresh.comments }
-          }
-          return parsed
+        const fresh = seedPosts.find(s => s.id === -1)
+        if (fresh) {
+          const idx = parsed.findIndex(p => p.id === -1)
+          if (idx !== -1) parsed[idx] = { ...fresh, comments: parsed[idx].comments || fresh.comments }
         }
         const existingIds = new Set(parsed.map(p => p.id))
         const missing = seedPosts.filter(p => !existingIds.has(p.id))
